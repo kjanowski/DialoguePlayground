@@ -23,6 +23,11 @@
 	--fg-color-bright: #ffffff;
 	--fg-color-neutral: #888888;
 	--fg-color-dark: #000000;
+	
+	--node-color-neutral: #ffffff;
+	--node-color-edited: #ccccff;
+	--node-color-played: #88ff88;
+	--node-border-width: 3px;
 }
 
 div{
@@ -78,27 +83,36 @@ body{
 	height: 1000px;
 }
 
-#flowViewer .flowNode{
-	fill: var(--bg-color-bright);
+.flowNode{
+	fill: var(--node-color-neutral);
 	fill-opacity: 1.0;
-	stroke: var(--fg-color-neutral);
-	stroke-width: 1;
+	stroke: transparent;
+	stroke-width: var(--node-border-width);
 	stroke-opacity: 1.0;
 }
 
-#flowViewer text{
+.flowNode.edited{
+	fill: var(--node-color-edited);
+}
+
+.flowNode.played{
+	stroke: var(--node-color-played);
+}
+
+
+.flowNode text{
 	fill: var(--fg-color-bright);
 	stroke-width:3;
 	fill-opacity: 1.0;
 }
 
-#flowViewer .flowEdge{
+.flowEdge{
 	stroke: var(--fg-color-bright);
 	stroke-opacity: 1.0;
 	fill: transparent;
 }
 
-#flowViewer .flowArrow{
+.flowArrow{
 	fill: var(--fg-color-bright);
 	fill-opacity: 1.0;
 	stroke: transparent;

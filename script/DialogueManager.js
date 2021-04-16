@@ -28,8 +28,16 @@ var worldState = {};
 // the currently played topic
 var currentTopicIndex = -1;
 
-//the currently edited topic
+// the currently edited topic
 var editedTopicIndex = -1;
+
+// the parameters for drawing the nodes
+var drawingParams = {};
+drawingParams.node = {width:100, height:50, cornerRadius: 10};
+drawingParams.text = {chunkLength: 12};
+drawingParams.text.offset = {x:10, y:20};
+drawingParams.handleLength = 30;
+	
 
 
 //=====================================================================================================
@@ -45,6 +53,33 @@ function addTopic(){
 }
 
 //-------------------------------------------------------------------------------------
+// Deletes the currently edited topic from the dialogue flow
+//-------------------------------------------------------------------------------------
+function deleteTopic(){
+	//adjust all the transitions
+	for(topic of topics){
+		for(transition of topic.transitions){
+			if(transition.nextTopic > editedTopicIndex){
+				//reduce index by one to account for the "hole" in the array
+				transition.nextTopic -= 1;
+			}else if(transition.nextTopic == editedTopicIndex)
+			{
+				//disconnect transition completely
+				transition.nextTopic = -1;
+			}//otherwise, the transition is not affected
+		}
+	}
+	
+	//delete the topic
+	topics.splice(editedTopicIndex, 1);
+	editedTopicIndex = -1; //clear selection immediately to prevent saving of the topic
+	switchTopic(-1);
+	
+	//refresh the dialogue flow display
+	drawFlow();
+}
+
+//-------------------------------------------------------------------------------------
 // Creates a default answer and adds it to the currently edited topic.
 //-------------------------------------------------------------------------------------
 function addAnswer(){
@@ -56,6 +91,18 @@ function addAnswer(){
 }
 
 //-------------------------------------------------------------------------------------
+// Deletes the given answer from the currently edited topic.
+//-------------------------------------------------------------------------------------
+function deleteAnswer(index){
+	saveTopic();
+	var editedTopic = topics[editedTopicIndex];
+	editedTopic.answers.splice(index, 1);
+	
+	showAnswers();
+}
+
+
+//-------------------------------------------------------------------------------------
 // Creates a default transition and adds it to the currently edited topic.
 //-------------------------------------------------------------------------------------
 function addTransition(){
@@ -65,6 +112,18 @@ function addTransition(){
 	
 	showTransitions();
 }
+
+//-------------------------------------------------------------------------------------
+// Deletes the given transition from the currently edited topic.
+//-------------------------------------------------------------------------------------
+function deleteTransition(index){
+	saveTopic();
+	var editedTopic = topics[editedTopicIndex];
+	editedTopic.transitions.splice(index, 1);
+	
+	showTransitions();
+}
+
 
 //=====================================================================================================
 // synchronizing dialogue flow and GUI
@@ -87,6 +146,7 @@ function switchTopic(newIndex){
 	{
 		editedTopicIndex=-1; //clear the selection 
 		editor.style.display="none";
+		drawFlow(); //refresh the node highlight
 		return;
 	}
 
@@ -123,6 +183,8 @@ function switchTopic(newIndex){
 	
 	showAnswers();
 	showTransitions();
+	
+	drawFlow(); //refresh the node highlight
 }
 
 //-------------------------------------------------------------------------------------
@@ -132,17 +194,31 @@ function showAnswers()
 {
 	var editedTopic = topics[editedTopicIndex];
 	
-	//list answers
 	var answerEditor = document.getElementById('topicAnswers');
 	answerEditor.innerHTML = "";
 	
 	var i;
 	for(i=0; i<editedTopic.answers.length; i++)
 	{
-		answerEditor.innerHTML +="<label for=\"answer_"+i+"_text\">Text:</label>"
-							   + "<input type=\"text\" id=\"answer_"+i+"_text\" value=\""+editedTopic.answers[i].text+"\"/><br>"
-							   + "<label for=\"answer_"+i+"_value\">Wert:</label>"
-							   + "<input type=\"text\" id=\"answer_"+i+"_value\" value=\""+editedTopic.answers[i].value+"\"/><br>";
+		//create a new subpanel for the answer
+		var answerPanel = "<div class=\"subpanel\">";
+		
+		//create an input field for the answer's display text
+		answerPanel += "<label for=\"answer_"+i+"_text\">Text:</label>"
+					  +"<input type=\"text\" id=\"answer_"+i+"_text\" value=\""+editedTopic.answers[i].text+"\"/><br>";
+					  
+		//create an input field for the answer's value
+		answerPanel += "<label for=\"answer_"+i+"_value\">Wert:</label>"
+				      +"<input type=\"text\" id=\"answer_"+i+"_value\" value=\""+editedTopic.answers[i].value+"\"/><br>";
+
+		//create a button for deleting this answer
+		answerPanel += "<button type=\"text\" id=\"answer_"+i+"_delete\" onclick=\"deleteAnswer("+i+");\">Antwort löschen</button><br>";
+		
+		//close the answer subpanel
+		answerPanel += "</div>"
+		
+		//add the new answer panel to the list
+		answerEditor.innerHTML +=answerPanel;		
 	}
 }
 
@@ -159,12 +235,26 @@ function showTransitions()
 	var i;
 	for(i=0; i<editedTopic.transitions.length; i++)
 	{
-		transitionEditor.innerHTML +="<div class=\"transitionPanel\">wenn<br>"
-									+"<input type=\"text\" id=\"transition_"+i+"_variable\" value=\""+editedTopic.transitions[i].variable+"\"/>"
-									+getOperandSelectHTML(i)
-									+"<input type=\"text\" id=\"transition_"+i+"_value\" value=\""+editedTopic.transitions[i].value+"\"/>"
-									+"<br>gehe zu <br>"
-									+getTopicSelectHTML(i)+"</div>";
+		//create a new subpanel for the transition
+		var transitionPanel = "<div class=\"subpanel\">";
+
+		//create inputs for defining the condition
+		transitionPanel +="<div class=\"transitionPanel\">wenn<br>"
+						 +"<input type=\"text\" id=\"transition_"+i+"_variable\" value=\""+editedTopic.transitions[i].variable+"\"/>"
+						 +getOperandSelectHTML(i)
+						 +"<input type=\"text\" id=\"transition_"+i+"_value\" value=\""+editedTopic.transitions[i].value+"\"/><br>";
+						 
+		//create a dropdown for the target topic
+		transitionPanel +="gehe zu <br>"+getTopicSelectHTML(i);
+		
+		//create a button for deleting this transition
+		transitionPanel += "<button type=\"text\" id=\"transition_"+i+"_delete\" onclick=\"deleteTransition("+i+");\">Übergang löschen</button><br>";
+		
+		//close the subpanel
+		transitionPanel +="</div>";
+									
+		//add the subpanel to the list
+		transitionEditor.innerHTML += transitionPanel;
 	}
 	
 	for(i=0; i<editedTopic.transitions.length; i++)
@@ -316,7 +406,9 @@ function play(){
 //-------------------------------------------------------------------------------------
 // Plays the currently active topic.
 //-------------------------------------------------------------------------------------
-function playTopic(){	
+function playTopic(){
+	drawFlow();
+	
 	console.log("current topic: "+currentTopicIndex);
 	var currentTopic = topics[currentTopicIndex];
 	if(currentTopic == undefined)
@@ -413,6 +505,9 @@ function exportDialogueData(){
 // Replaces the dialogue data with that found in the import/export field.
 //-------------------------------------------------------------------------------------
 function importDialogueData(){
+	editedTopicIndex = -1; //clear selection explicitly to prevent saving
+	switchTopic(-1);
+	
 	var dialogueData = document.getElementById("dialogueData");
 	
 	//sanitize import data
@@ -459,13 +554,6 @@ function toggle(accordionID){
 function drawFlow(){
 	var svgCanvas = document.getElementById("flowViewer");
 	
-	var chunkLength=12;
-	var nodeWidth = 100;
-	var nodeHeight = 50;
-	var nodeCornerRadius = 10;
-	var textOffset = {x:10, y:20};
-	var handleLength = 30;
-	
 	var edgeLayer = "";
 	var nodeLayer = "";
 	
@@ -474,32 +562,7 @@ function drawFlow(){
 		var topic = topics[i];
 		
 		//draw the node
-		nodeLayer += "<rect class=\"flowNode\" x=\""+topic.x+"\" y=\""+topic.y+"\" width=\""+nodeWidth+"\" height=\""+nodeHeight+"\" "
-				   + "rx=\""+nodeCornerRadius+"\" ry=\""+nodeCornerRadius+"\" " 
-				   + "onclick=\"switchTopic("+i+")\"/>"
-		//draw its text
-		var textX = topic.x*1 +textOffset.x;
-		var textY = topic.y*1 +textOffset.y;
-		nodeLayer += "<text x=\""+textX+"\" y=\""+textY+"\" onclick=\"switchTopic("+i+")\">"
-		//chop longer topic names into separate lines
-		var chunkStart=0;
-		var chunkEnd=chunkStart+chunkLength;
-		var offsetY = 0;
-		while (chunkStart<topic.name.length)
-		{
-			var textChunk;
-			if(chunkEnd<topic.name.length)
-				textChunk = topic.name.substring(chunkStart, chunkEnd);
-			else textChunk = topic.name.substring(chunkStart);
-			
-			var lineY = textY + offsetY;
-			nodeLayer += "<tspan x=\""+textX+"\" y=\""+lineY+"\">"+textChunk+"</tspan>";
-			offsetY += textOffset.y;
-			
-			chunkStart = chunkEnd;
-			chunkEnd = chunkEnd+chunkLength;
-		}
-		nodeLayer +="</text>";
+		nodeLayer += createNode(i);
 		
 		//draw outgoing edges
 		for(transition of topic.transitions)
@@ -509,15 +572,15 @@ function drawFlow(){
 			if (nextTopic != undefined)
 			{
 				
-				var startX = topic.x*1 + nodeWidth;
-				var startY = topic.y*1 + nodeHeight*0.5;
+				var startX = topic.x*1 + drawingParams.node.width;
+				var startY = topic.y*1 + drawingParams.node.height*0.5;
 				
-				var startHandleX = startX + handleLength;
+				var startHandleX = startX + drawingParams.handleLength;
 								
 				var endX = nextTopic.x*1 ;
-				var endY = nextTopic.y*1 + nodeHeight*0.5;
+				var endY = nextTopic.y*1 + drawingParams.node.height*0.5;
 				
-				var endHandleX = endX - handleLength;
+				var endHandleX = endX - drawingParams.handleLength;
 
 				var midX = (startX+endX)/2;
 				var midY = (startY+endY)/2;
@@ -542,6 +605,58 @@ function drawFlow(){
 }
 
 
+
+//-------------------------------------------------------------------------------------
+// Creates a topic node.
+//-------------------------------------------------------------------------------------
+function createNode(topicIndex){
+	var topic = topics[topicIndex];
+	
+	//prepare the class
+	var nodeClass = "flowNode";
+	if(topicIndex == editedTopicIndex)
+		nodeClass +=" edited";
+	if(topicIndex == currentTopicIndex)
+		nodeClass +=" played";
+		
+	//create a rectangle
+	var nodeSVG = "<rect class=\""+nodeClass+"\" x=\""+topic.x+"\" y=\""+topic.y+"\" "
+				+ "width=\""+drawingParams.node.width+"\" height=\""+drawingParams.node.height+"\" "
+				   + "rx=\""+drawingParams.node.cornerRadius+"\" ry=\""+drawingParams.node.cornerRadius+"\" " 
+				   + "onclick=\"switchTopic("+topicIndex+")\"/>";
+				   
+	//label it with the topic name -------------------------------------
+	
+	//calculate the text position
+	var textX = topic.x*1 +drawingParams.text.offset.x;
+	var textY = topic.y*1 +drawingParams.text.offset.y;
+	
+	nodeSVG += "<text x=\""+textX+"\" y=\""+textY+"\" onclick=\"switchTopic("+topicIndex+")\">"
+
+	//chop longer topic names into separate lines
+	var chunkStart=0;
+	var chunkEnd=chunkStart+drawingParams.text.chunkLength;
+	var offsetY = 0;
+	while (chunkStart<topic.name.length)
+	{
+		var textChunk;
+		if(chunkEnd<topic.name.length)
+			textChunk = topic.name.substring(chunkStart, chunkEnd);
+		else textChunk = topic.name.substring(chunkStart);
+		
+		var lineY = textY + offsetY;
+		nodeSVG += "<tspan x=\""+textX+"\" y=\""+lineY+"\">"+textChunk+"</tspan>";
+		offsetY += drawingParams.text.offset.y;
+		
+		chunkStart = chunkEnd;
+		chunkEnd = chunkEnd+drawingParams.text.chunkLength;
+	}
+	
+	//close text element
+	nodeSVG +="</text>";	
+
+	return nodeSVG;
+}
 
 
 
