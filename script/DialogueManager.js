@@ -393,6 +393,14 @@ function sanitizeInput(input){
 // Playing the Dialogue
 //=====================================================================================================
 
+//-------------------------------------------------------------------------------------
+// Plays the dialogue flow, starting from the beginning.
+//-------------------------------------------------------------------------------------
+function playAll(){
+	saveTopic();
+	currentTopicIndex = 0;
+	playTopic();
+}
 
 //-------------------------------------------------------------------------------------
 // Plays the dialogue flow, starting from the currently edited topic.
@@ -404,6 +412,22 @@ function play(){
 }
 
 //-------------------------------------------------------------------------------------
+// Plays the dialogue flow, starting from the currently edited topic.
+//-------------------------------------------------------------------------------------
+function stop(){
+	//interrupt the agent's speech
+	stopSpeech();
+	
+	//hide the answer options
+	var answerOptions = document.getElementById("answerOptions");
+	answerOptions.style.display = "none";
+	
+	//clear the play state
+	currentTopicIndex = -1;
+	drawFlow();
+}
+
+//-------------------------------------------------------------------------------------
 // Plays the currently active topic.
 //-------------------------------------------------------------------------------------
 function playTopic(){
@@ -412,7 +436,10 @@ function playTopic(){
 	console.log("current topic: "+currentTopicIndex);
 	var currentTopic = topics[currentTopicIndex];
 	if(currentTopic == undefined)
-		return; //stop playing if the current index does not point to a valid topic 
+	{
+		stop(); //stop playing if the current index does not point to a valid topic 
+		return;
+	}
 	
 	playAnimation(currentTopic.movement);
 	playAnimation(currentTopic.emotion);
@@ -441,14 +468,20 @@ function playTopic(){
 //-------------------------------------------------------------------------------------
 function selectAnswer(answerIndex)
 {
-	var answerOptions = document.getElementById("answerOptions");
-	answerOptions.style.display = "none";
-	
+	//interrupt the agent's speech
 	stopSpeech();
 	
+	//hide the answer options
+	var answerOptions = document.getElementById("answerOptions");
+	answerOptions.style.display = "none";
+		
 	//store the answer
 	var currentTopic = topics[currentTopicIndex];
 	var answer = currentTopic.answers[answerIndex];
+	//abort if no valid answer was selected
+	if(answer == undefined)
+		return;
+	
 	if(currentTopic.variable.length>0)
 	worldState[currentTopic.variable] = answer.value;
 
