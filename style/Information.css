@@ -1,0 +1,56 @@
+:root{
+	--bg-color-darkest: #000000;
+	--bg-color-dark: #222324;
+	--bg-color-neutral: #3c3c3c;
+	--bg-color-bright: #7d7d7d;
+	--fg-color-bright: #ffffff;
+	--fg-color-neutral: #888888;
+	--fg-color-dark: #000000;
+}
+
+div{
+	display: inline-block;
+	vertical-align:top;
+}
+
+body{
+	background:var(--bg-color-darkest);
+	color:var(--fg-color-bright);
+}
+
+.page{
+	width:1600px;
+	height:800px; 
+	position: relative;
+	top:0px;
+	margin-left:auto;
+	margin-right:auto;
+	background: var(--bg-color-darkest);
+}
+
+.page a{
+	padding: 10px;
+	background: var(--bg-color-dark);
+	color: var(--fg-color-bright);
+	text-decoration:none;
+}
+
+.page a:hover{
+	background: var(--bg-color-neutral);
+}
+
+.panel{
+	padding:10px;
+	text-align: center;
+	background: var(--bg-color-neutral);
+}
+
+.panel.full-width{
+	width:100%;
+	margin:0px;
+}
+
+.panel.col3{
+	width:30%;
+	margin:auto;
+}
