@@ -28,18 +28,23 @@
 		<div class="viewport">
 			<svg id="flowViewer"></svg>
 		</div>
+		<button class="help-button" type="button" onclick="toggleVisibility('help-flow');">?</button>
+		<div class="help-popup" id="help-flow" style="visibility:hidden;">Hier werden die verschiedenen Themen und ihre Verbindungen angezeigt. Klicke auf einen Kasten, um das Thema auszuwählen.</div>
+			
 		<div class="panel" id="importExportPanel">
 			<textarea id="dialogueData" rows="10" cols="100"></textarea>
 			<button type="button" id="importButton" onclick="importDialogueData();">importieren</button>
 			<button type="button" id="exportButton" onclick="exportDialogueData();">exportieren</button>
+			<button class="help-button" type="button" onclick="toggleVisibility('help-data');">?</button>
+			<div class="help-popup" id="help-data" style="visibility:hidden;">Dieses Feld dient dazu, den Dialog in eine Textdatei zu kopieren, oder umgekehrt. Mit "importieren" wird der aktuelle Dialog durch die Daten im Feld ersetzt. Mit "exportieren" werden die Daten des aktuellen Dialogs in das Feld geschrieben.</div>
 		</div>
 	</div>
 	<div class="tabPanel" id="toolshelf">
 		<button type="button" onclick="addTopic();">neues Thema</button>
 		<form id="topicEditor">
 			<div class="accordion" id="accordionAppearance">
-				<div class="caption" id="accordionAppearance_caption" onclick="toggle('accordionAppearance');">▼ Darstellung</div>
-				<div class="content" id="accordionAppearance_content">
+				<div class="caption" id="accordionAppearance_caption" onclick="toggleExpansion('accordionAppearance');">▼ Darstellung</div>
+				<div class="content" id="accordionAppearance_content" style="display:none;">
 					<div class="panel">
 						<label for="topicName">Name:</label>
 						<input type="text" id="topicName" value="neues Thema"/>
@@ -55,8 +60,8 @@
 				</div>
 			</div>
 			<div class="accordion" id="accordionAction">
-				<div class="caption" id="accordionAction_caption" onclick="toggle('accordionAction');">▼ Verhalten</div>
-				<div class="content" id="accordionAction_content">
+				<div class="caption" id="accordionAction_caption" onclick="toggleExpansion('accordionAction');">▼ Verhalten</div>
+				<div class="content" id="accordionAction_content" style="display:none;">
 					<div class="panel">	
 						<label for="topicEmotion">Emotion:</label>
 						<select id="topicEmotion" value="">
@@ -88,8 +93,8 @@
 				</div>
 			</div>
 			<div class="accordion" id="accordionAnswers">
-				<div class="caption" id="accordionAnswers_caption" onclick="toggle('accordionAnswers');">▼ Nutzer-Reaktion</div>
-				<div class="content" id="accordionAnswers_content">
+				<div class="caption" id="accordionAnswers_caption" onclick="toggleExpansion('accordionAnswers');">▼ Nutzer-Reaktion</div>
+				<div class="content" id="accordionAnswers_content" style="display:none;">
 					<div class="panel">
 						<label for="topicVariable">abgefragte Variable:</label>
 						<input type="text" id="topicVariable" value="Antwort"/>
@@ -105,8 +110,8 @@
 				</div>
 			</div>
 			<div class="accordion" id="accordionTransitions">
-				<div class="caption" id="accordionTransitions_caption" onclick="toggle('accordionTransitions');">▼ Übergänge</div>
-				<div class="content" id="accordionTransitions_content">
+				<div class="caption" id="accordionTransitions_caption" onclick="toggleExpansion('accordionTransitions');">▼ Übergänge</div>
+				<div class="content" id="accordionTransitions_content" style="display:none;">
 					<div class="panel">
 						<div id="topicTransitions"></div>
 						<button type="button" onclick="addTransition();">neuer Übergang</button>

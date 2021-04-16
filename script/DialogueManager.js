@@ -190,8 +190,7 @@ function switchTopic(newIndex){
 //-------------------------------------------------------------------------------------
 // Lists the answers for the currently edited topic on the editor panel.
 //-------------------------------------------------------------------------------------
-function showAnswers()
-{
+function showAnswers(){
 	var editedTopic = topics[editedTopicIndex];
 	
 	var answerEditor = document.getElementById('topicAnswers');
@@ -201,7 +200,7 @@ function showAnswers()
 	for(i=0; i<editedTopic.answers.length; i++)
 	{
 		//create a new subpanel for the answer
-		var answerPanel = "<div class=\"subpanel\">";
+		var answerPanel = "<div class=\"list-panel\">";
 		
 		//create an input field for the answer's display text
 		answerPanel += "<label for=\"answer_"+i+"_text\">Text:</label>"
@@ -225,8 +224,7 @@ function showAnswers()
 //-------------------------------------------------------------------------------------
 // Lists the transitions from the currently edited topic on the editor panel.
 //-------------------------------------------------------------------------------------
-function showTransitions()
-{
+function showTransitions(){
 	var editedTopic = topics[editedTopicIndex];
 	
 	var transitionEditor = document.getElementById('topicTransitions');
@@ -236,16 +234,15 @@ function showTransitions()
 	for(i=0; i<editedTopic.transitions.length; i++)
 	{
 		//create a new subpanel for the transition
-		var transitionPanel = "<div class=\"subpanel\">";
+		var transitionPanel = "<div class=\"list-panel\">";
 
 		//create inputs for defining the condition
-		transitionPanel +="<div class=\"transitionPanel\">wenn<br>"
-						 +"<input type=\"text\" id=\"transition_"+i+"_variable\" value=\""+editedTopic.transitions[i].variable+"\"/>"
+		transitionPanel +="wenn<br><input type=\"text\" id=\"transition_"+i+"_variable\" value=\""+editedTopic.transitions[i].variable+"\"/>"
 						 +getOperandSelectHTML(i)
 						 +"<input type=\"text\" id=\"transition_"+i+"_value\" value=\""+editedTopic.transitions[i].value+"\"/><br>";
 						 
 		//create a dropdown for the target topic
-		transitionPanel +="gehe zu <br>"+getTopicSelectHTML(i);
+		transitionPanel +="gehe zu <br>"+getTopicSelectHTML(i)+"<br>";
 		
 		//create a button for deleting this transition
 		transitionPanel += "<button type=\"text\" id=\"transition_"+i+"_delete\" onclick=\"deleteTransition("+i+");\">Übergang löschen</button><br>";
@@ -562,7 +559,7 @@ function importDialogueData(){
 //-------------------------------------------------------------------------------------
 // Collapses or expands a section of the topic editor.
 //-------------------------------------------------------------------------------------
-function toggle(accordionID){
+function toggleExpansion(accordionID){
 	saveTopic();
 	var accordion = document.getElementById(accordionID);
 	var caption = document.getElementById(accordionID+"_caption");
@@ -576,6 +573,18 @@ function toggle(accordionID){
 		caption.innerHTML = "▼"+caption.innerHTML.substring(1);		
 	}
 }
+
+//-------------------------------------------------------------------------------------
+// Shows or hides the element in question.
+//-------------------------------------------------------------------------------------
+function toggleVisibility(elementID){
+	var targetElement = document.getElementById(elementID);
+	
+	if(targetElement.style.visibility == 'hidden')
+		targetElement.style.visibility = 'visible';
+	else targetElement.style.visibility = 'hidden';
+}
+
 
 //=====================================================================================================
 // dialogue flow display

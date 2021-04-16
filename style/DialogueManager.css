@@ -28,11 +28,16 @@
 	--node-color-edited: #ccccff;
 	--node-color-played: #88ff88;
 	--node-border-width: 3px;
+	
+	--layer-agent: 1;
+	--layer-editor: 2;
+	--layer-help: 15;
 }
 
 div{
 	display: inline-block;
 	vertical-align:top;
+	position: relative;
 }
 
 body{
@@ -48,6 +53,7 @@ body{
 	margin-right:auto;
 	background: var(--bg-color-darkest);
 }
+
 .tabPanel{
 	position: relative;
 	height: 760px;
@@ -62,12 +68,37 @@ body{
 	
 	overflow: auto;
 }	
-//-------------------------------------------------
-// SVG dialogue flow display
-//-------------------------------------------------
+
+/*-------------------------------------------------
+  help popup
+-------------------------------------------------*/
+
+.help-button{
+	width:20px!important;
+	height:20px!important;
+	float:right;
+}
+
+
+.help-popup{
+	display:block;
+	background:var(--bg-color-dark);
+	color:var(--fg-color-bright);
+	padding:10px;
+	position:absolute;
+	right:0px;
+	top:20px;
+}
+
+
+
+
+/*-------------------------------------------------
+  SVG dialogue flow display
+-------------------------------------------------*/
 
 #flowViewerTab{
-	z-index:2;
+	z-index:var(--layer-editor);
 }
 
 .viewport{
@@ -118,12 +149,12 @@ body{
 	stroke: transparent;
 }
 
-//-------------------------------------------------
-// topic editor
-//-------------------------------------------------
+/*-------------------------------------------------
+  topic editor
+-------------------------------------------------*/
 
 #toolshelf{
-	z-index:1;
+	z-index:var(--layer-editor);
 }
 
 .accordion {
@@ -158,7 +189,26 @@ input.coordinates{
 }
 
 .panel{
+	margin:0px;
+	padding:0px;
+	position:relative;
+}
+
+.list-panel{
 	margin:10px;
+	padding:10px;
+	width:240px;
+	border:1px solid var(--fg-color-neutral);
+	position:relative;
+}
+
+.list-panel label{
+	margin-right:10px;
+}
+
+.list-panel input{
+	right:0px;
+	width:auto;
 }
 
 #topicList{
@@ -175,7 +225,7 @@ input.coordinates{
 
 #dialogueData{
 	position:relative;
-	width:280px;
+	width:290px;
 	min-height:100px;
 	overflow:scroll;
 	border: 1px solid var(--fg-color-neutral);
@@ -188,9 +238,9 @@ input.coordinates{
 	margin:auto;
 }
 
-//-------------------------------------------------
-// agent display
-//-------------------------------------------------
+/*-------------------------------------------------
+  agent display
+-------------------------------------------------*/
 
 
 #agentPanel{
@@ -201,22 +251,24 @@ input.coordinates{
 }
 
 #webglcontainer{
-	z-Index: 0;
+	z-Index: var(--layer-agent);
 	position:relative;
 	width: 400px;
 	height: 800px;
 	background: var(--bg-color-bright);
-	box-shadow: 5px 0px 10px 10px rgba(0,0,0,0.2) inset; 
+	box-shadow: 5px 0px 10px 10px rgba(0,0,0,0.2) inset;
+	display:inline-block;	
 }
 
 #answerOptions{
 	height:800px;
-	width:300px;
+	width:290px;
 	display:none;
+	margin:0px;
 }
 
 #answerOptions button{
-	display:block;
+	display:inline-block;
 	width:100%;
 	height:60px;
 	font-size:20px;
@@ -225,7 +277,8 @@ input.coordinates{
 #playControls{
 	position: absolute;
 	top:0px;
-	left:700px;
+	left:0px;
+	z-index: var(--layer-editor);
 }
 
 
