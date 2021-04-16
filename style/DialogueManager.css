@@ -1,0 +1,208 @@
+:root{
+	--bg-color-darkest: #000000;
+	--bg-color-dark: #222324;
+	--bg-color-neutral: #3c3c3c;
+	--bg-color-bright: #7d7d7d;
+	--fg-color-bright: #ffffff;
+	--fg-color-neutral: #888888;
+	--fg-color-dark: #000000;
+}
+
+div{
+	display: inline-block;
+	vertical-align:top;
+}
+
+body{
+	background:var(--bg-color-darkest);
+}
+
+.page{
+	width:1600px;
+	height:800px; 
+	position: relative;
+	top:0px;
+	margin-left:auto;
+	margin-right:auto;
+	background: var(--bg-color-darkest);
+}
+.tabPanel{
+	position: relative;
+	height: 760px;
+	width: 300px;
+	padding:20px;
+	margin:0px;
+	
+	background:var(--bg-color-neutral);
+	color:var(--fg-color-bright);
+	
+	border: 1px solid var(--bg-color-darkest);
+	
+	overflow: auto;
+}	
+//-------------------------------------------------
+// SVG dialogue flow display
+//-------------------------------------------------
+
+#flowViewerTab{
+	z-index:2;
+}
+
+.viewport{
+	background: var(--bg-color-neutral);
+	width:300px;
+	height:500px;
+	overflow:scroll;
+	border:1px solid var(--fg-neutral-color);
+}
+
+#flowViewer{
+	width: 1500px;
+	height: 1000px;
+}
+
+#flowViewer .flowNode{
+	fill: var(--bg-color-bright);
+	fill-opacity: 1.0;
+	stroke: var(--fg-color-neutral);
+	stroke-width: 1;
+	stroke-opacity: 1.0;
+}
+
+#flowViewer text{
+	fill: var(--fg-color-bright);
+	stroke-width:3;
+	fill-opacity: 1.0;
+}
+
+#flowViewer .flowEdge{
+	stroke: var(--fg-color-bright);
+	stroke-opacity: 1.0;
+	fill: transparent;
+}
+
+#flowViewer .flowArrow{
+	fill: var(--fg-color-bright);
+	fill-opacity: 1.0;
+	stroke: transparent;
+}
+
+//-------------------------------------------------
+// topic editor
+//-------------------------------------------------
+
+#toolshelf{
+	z-index:1;
+}
+
+.accordion {
+	display:block;
+	border: 1px solid var(--fg-color-bright);
+}
+
+.accordion .caption{
+	width:100%;
+	display:block;
+	background:var(--bg-color-dark);
+}
+
+.accordion .content{
+	display:none;
+	padding:10px;
+	background: var(--bg-color-neutral);
+	box-shadow: 5px 5px 3px rgba(0,0,0,0.2) inset; 	
+}
+
+#topicEditor{
+	display:none;
+}
+
+label, input, button{
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+input.coordinates{
+	width:80px;
+}
+
+.panel{
+	margin:10px;
+}
+
+#topicList{
+	width:280px;
+	min-height:50px;
+	height:auto;
+	overflow:scroll;
+	border: 1px solid var(--fg-color-neutral);
+}
+
+#topicList button{
+	display:block;
+}
+
+#dialogueData{
+	position:relative;
+	width:280px;
+	min-height:100px;
+	overflow:scroll;
+	border: 1px solid var(--fg-color-neutral);
+}
+
+
+#importExportPanel button{
+	display:inline-block;
+	width: 45%;
+	margin:auto;
+}
+
+//-------------------------------------------------
+// agent display
+//-------------------------------------------------
+
+
+#agentPanel{
+	padding:0px;
+	width:700px;
+	height:800px;
+	background:var(--bg-color-dark);
+}
+
+#webglcontainer{
+	z-Index: 0;
+	position:relative;
+	width: 400px;
+	height: 800px;
+	background: var(--bg-color-bright);
+	box-shadow: 5px 0px 10px 10px rgba(0,0,0,0.2) inset; 
+}
+
+#answerOptions{
+	height:800px;
+	width:300px;
+	display:none;
+}
+
+#answerOptions button{
+	display:block;
+	width:100%;
+	height:60px;
+	font-size:20px;
+}
+
+#playControls{
+	position: absolute;
+	top:0px;
+	left:700px;
+}
+
+
+
+
+
+
+
+
+
+
