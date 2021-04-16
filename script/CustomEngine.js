@@ -1,5 +1,28 @@
+/*
+	Copyright Kathrin Janowski (https://www.kathrinjanowski.com/en/home), 2021.
+  
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+//=====================================================================================================
+// global variables
+//=====================================================================================================
+
+// the div element that will hold the agent's visible body
 var bodyContainer = undefined;
 
+// the parameters to use for speech output
 var voice = {};
 voice.index = 0;
 voice.language = 'de';
@@ -9,10 +32,13 @@ voice.pitch = 1.0;	//from 0 to 2
 
 
 
-//----------------------------------------------------------------------
+//=====================================================================================================
 // initialization
-//----------------------------------------------------------------------
+//=====================================================================================================
 
+//-------------------------------------------------------------------------------------
+// Stores the reference to the body display container, then creates the agent.
+//-------------------------------------------------------------------------------------
 function initAgent(targetContainer)
 {
 	window.onload =  () => {
@@ -21,10 +47,13 @@ function initAgent(targetContainer)
 	};
 }
 
-//----------------------------------------------------------------------
+//=====================================================================================================
 // wrapper for the agent's API
-//----------------------------------------------------------------------
+//=====================================================================================================
 
+//-------------------------------------------------------------------------------------
+// Plays the requested animation on the agent.
+//-------------------------------------------------------------------------------------
 function playAnimation(animName){
 	if(animName.length>0)
 	try{
@@ -35,6 +64,9 @@ function playAnimation(animName){
 	}
 }
 
+//-------------------------------------------------------------------------------------
+// Makes the agent speak the requested sentence.
+//-------------------------------------------------------------------------------------
 function speak(utterance)
 {
 	if('speechSynthesis' in window)
@@ -58,6 +90,9 @@ function speak(utterance)
 	}
 }
 
+//-------------------------------------------------------------------------------------
+// Makes the agent stop speaking the current sentence.
+//-------------------------------------------------------------------------------------
 function stopSpeech(){
 	if('speechSynthesis' in window)
 	{
@@ -69,10 +104,13 @@ function stopSpeech(){
 }
 
 
-//----------------------------------------------------------------------
-// the agent
-//----------------------------------------------------------------------
+//=====================================================================================================
+// the agent itself
+//=====================================================================================================
 
+//-------------------------------------------------------------------------------------
+// Assembles the agent's body from SVG elements.
+//-------------------------------------------------------------------------------------
 function createBody(){
 	var svgContent = "<svg width=\"300\" height=\"600\">";
 	
@@ -89,7 +127,10 @@ function createBody(){
 }
 
 
-//Problem: when should I call this? On load, the voices are not defined yet...
+//-------------------------------------------------------------------------------------
+// Creates a dropdown for choosing one of the available voices.
+//-------------------------------------------------------------------------------------
+//TODO: when should I call this? On load, the voices are not available yet...
 function createVoiceSelector(){
 	var dropdown = "";
 	if('speechSynthesis' in window)

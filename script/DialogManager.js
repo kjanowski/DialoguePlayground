@@ -1,16 +1,52 @@
+/*
+	Copyright Kathrin Janowski (https://www.kathrinjanowski.com/en/home), 2021.
+  
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+//=====================================================================================================
+// global variables
+//=====================================================================================================
+
+// the topics of which the dialog consists
 var topics = [];
+
+// the object storing the answers
 var worldState = {};
 
+// the currently played topic
 var currentTopicIndex = -1;
+
+//the currently edited topic
 var editedTopicIndex = -1;
 
 
+//=====================================================================================================
+// modifying the dialogue flow
+//=====================================================================================================
 
+//-------------------------------------------------------------------------------------
+// Creates a default topic and adds it to the dialogue flow
+//-------------------------------------------------------------------------------------
 function addTopic(){
 	topics.push({name:'Thema', x:0, y:0, emotion:'', movement:'', question:'Frage', answers:[], transitions:[]})
 	switchTopic(topics.length-1);
 }
 
+//-------------------------------------------------------------------------------------
+// Creates a default answer and adds it to the currently edited topic.
+//-------------------------------------------------------------------------------------
 function addAnswer(){
 	saveTopic();
 	var editedTopic = topics[editedTopicIndex];
@@ -19,27 +55,47 @@ function addAnswer(){
 	showAnswers();
 }
 
+//-------------------------------------------------------------------------------------
+// Creates a default transition and adds it to the currently edited topic.
+//-------------------------------------------------------------------------------------
 function addTransition(){
 	saveTopic();
 	var editedTopic = topics[editedTopicIndex];
-	editedTopic.transitions.push({variable:'Antwort',operand:'equal',value:'Antwort', nextTopic:'-1'});
+	editedTopic.transitions.push({variable:'',operand:'equal',value:'', nextTopic:'-1'});
 	
 	showTransitions();
 }
 
+//=====================================================================================================
+// synchronizing dialogue flow and GUI
+//=====================================================================================================
+
+//-------------------------------------------------------------------------------------
+// Sets the currently edited topic and displays its attributes on the editor panel. 
+//-------------------------------------------------------------------------------------
 function switchTopic(newIndex){
 	saveTopic();
 
+	//--------------------------------------------------------------
+	// check selection validity 
+	//--------------------------------------------------------------
+	
 	var editor = document.getElementById("topicEditor");
 
+	//hide the editor panel if no topic is selected
 	if((newIndex <0)||(newIndex>=topics.length))
 	{
-		editedTopicIndex=-1;
+		editedTopicIndex=-1; //clear the selection 
 		editor.style.display="none";
 		return;
 	}
-	
+
+	//show the editor panel
 	editor.style.display="block";
+
+	//--------------------------------------------------------------
+	// select the requested topic and display its attributes 
+	//--------------------------------------------------------------
 	
 	editedTopicIndex = newIndex;
 	var editedTopic = topics[editedTopicIndex];
@@ -56,7 +112,6 @@ function switchTopic(newIndex){
 	var variableInput = document.getElementById("topicVariable");
 	variableInput.value = editedTopic.variable;
 	
-	
 	var emotionSelect = document.getElementById("topicEmotion");
 	emotionSelect.value = editedTopic.emotion;
 
@@ -70,6 +125,9 @@ function switchTopic(newIndex){
 	showTransitions();
 }
 
+//-------------------------------------------------------------------------------------
+// Lists the answers for the currently edited topic on the editor panel.
+//-------------------------------------------------------------------------------------
 function showAnswers()
 {
 	var editedTopic = topics[editedTopicIndex];
@@ -88,6 +146,9 @@ function showAnswers()
 	}
 }
 
+//-------------------------------------------------------------------------------------
+// Lists the transitions from the currently edited topic on the editor panel.
+//-------------------------------------------------------------------------------------
 function showTransitions()
 {
 	var editedTopic = topics[editedTopicIndex];
@@ -115,6 +176,9 @@ function showTransitions()
 	}
 }
 
+//-------------------------------------------------------------------------------------
+// Creates a dropdown for the operand of the given transition's condition.
+//-------------------------------------------------------------------------------------
 function getOperandSelectHTML(transitionIndex){
 	var selectHTML = "<select id=\"transition_"+transitionIndex+"_operand\" value=\"-1\">"
 				   + "<option value=\"equal\">gleich</option>"
@@ -126,6 +190,9 @@ function getOperandSelectHTML(transitionIndex){
 	return selectHTML;
 }
 
+//-------------------------------------------------------------------------------------
+// Creates a dropdown for the target topic of the given transition.
+//-------------------------------------------------------------------------------------
 function getTopicSelectHTML(transitionIndex){
 	var selectHTML = "<select id=\"transition_"+transitionIndex+"_nextTopic\" value=\"''\">";
 	
@@ -142,6 +209,9 @@ function getTopicSelectHTML(transitionIndex){
 	return selectHTML;
 }
 
+//-------------------------------------------------------------------------------------
+// Updates the edited topic with the attributes shown on the editor panel.
+//-------------------------------------------------------------------------------------
 function saveTopic(){
 	console.log("edited topic: "+editedTopicIndex);
 	var editedTopic = topics[editedTopicIndex];
@@ -218,18 +288,34 @@ function saveTopic(){
 	drawFlow();
 }
 
+//-------------------------------------------------------------------------------------
+// Removes potentially dangerous symbols from an input field and returns the result.
+//-------------------------------------------------------------------------------------
 function sanitizeInput(input){
 	var cleanText = input.value.replace(/[();<>{}""''\/\[\]]/g, "");
 	input.value=cleanText;
 	return cleanText;
 }
 
+
+
+//=====================================================================================================
+// Playing the Dialogue
+//=====================================================================================================
+
+
+//-------------------------------------------------------------------------------------
+// Plays the dialogue flow, starting from the currently edited topic.
+//-------------------------------------------------------------------------------------
 function play(){
 	saveTopic();
 	currentTopicIndex = editedTopicIndex;
 	playTopic();
 }
 
+//-------------------------------------------------------------------------------------
+// Plays the currently active topic.
+//-------------------------------------------------------------------------------------
 function playTopic(){	
 	console.log("current topic: "+currentTopicIndex);
 	var currentTopic = topics[currentTopicIndex];
@@ -258,6 +344,9 @@ function playTopic(){
 	answerOptions.style.display="inline-block";
 }
 
+//-------------------------------------------------------------------------------------
+// Handles the user input for answering the agent's prompt.
+//-------------------------------------------------------------------------------------
 function selectAnswer(answerIndex)
 {
 	var answerOptions = document.getElementById("answerOptions");
@@ -307,11 +396,22 @@ function selectAnswer(answerIndex)
 	}
 }
 
+
+//=====================================================================================================
+// importing and exporting the whole dialogue
+//=====================================================================================================
+
+//-------------------------------------------------------------------------------------
+// Writes the dialogue's current data to the import/export field.
+//-------------------------------------------------------------------------------------
 function exportDialogueData(){
 	var dialogueData = document.getElementById("dialogueData");
 	dialogueData.value = JSON.stringify(topics);
 }
 
+//-------------------------------------------------------------------------------------
+// Replaces the dialogue data with that found in the import/export field.
+//-------------------------------------------------------------------------------------
 function importDialogueData(){
 	var dialogueData = document.getElementById("dialogueData");
 	
@@ -326,10 +426,14 @@ function importDialogueData(){
 	drawFlow();
 }
 
-//-------------------------------------------------------
-// editor GUI
-//-------------------------------------------------------
 
+//=====================================================================================================
+// editor GUI
+//=====================================================================================================
+
+//-------------------------------------------------------------------------------------
+// Collapses or expands a section of the topic editor.
+//-------------------------------------------------------------------------------------
 function toggle(accordionID){
 	saveTopic();
 	var accordion = document.getElementById(accordionID);
@@ -345,11 +449,13 @@ function toggle(accordionID){
 	}
 }
 
-//-------------------------------------------------------
+//=====================================================================================================
 // dialogue flow display
-//-------------------------------------------------------
+//=====================================================================================================
 
-
+//-------------------------------------------------------------------------------------
+// Draws the topic nodes and the transitions between them.
+//-------------------------------------------------------------------------------------
 function drawFlow(){
 	var svgCanvas = document.getElementById("flowViewer");
 	
