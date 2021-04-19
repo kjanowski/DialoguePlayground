@@ -1,2 +1,2 @@
 # DialoguePlayground
-A simplified, browser-based dialogue manager.
+A browser-based dialogue manager.
