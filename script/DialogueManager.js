@@ -34,7 +34,7 @@ var editedTopicIndex = -1;
 // the parameters for drawing the nodes
 var drawingParams = {};
 drawingParams.node = {width:100, height:50, cornerRadius: 10};
-drawingParams.text = {chunkLength: 12};
+drawingParams.text = {chunkLength: 10};
 drawingParams.text.offset = {x:10, y:20};
 drawingParams.handleLength = 30;
 	
@@ -211,7 +211,7 @@ function showAnswers(){
 				      +"<input type=\"text\" id=\"answer_"+i+"_value\" value=\""+editedTopic.answers[i].value+"\"/><br>";
 
 		//create a button for deleting this answer
-		answerPanel += "<button type=\"text\" id=\"answer_"+i+"_delete\" onclick=\"deleteAnswer("+i+");\">Antwort löschen</button><br>";
+		answerPanel += "<button class=\"delete-button\" type=\"button\" id=\"answer_"+i+"_delete\" onclick=\"deleteAnswer("+i+");\"><span class=\"icon icon-delete button-caption\">Antwort löschen</span></button><br>";
 		
 		//close the answer subpanel
 		answerPanel += "</div>"
@@ -245,7 +245,7 @@ function showTransitions(){
 		transitionPanel +="gehe zu <br>"+getTopicSelectHTML(i)+"<br>";
 		
 		//create a button for deleting this transition
-		transitionPanel += "<button type=\"text\" id=\"transition_"+i+"_delete\" onclick=\"deleteTransition("+i+");\">Übergang löschen</button><br>";
+		transitionPanel += "<button class=\"delete-button\" type=\"button\" id=\"transition_"+i+"_delete\" onclick=\"deleteTransition("+i+");\"><span class=\"icon icon-delete button-caption\">Übergang löschen</span></button><br>";
 		
 		//close the subpanel
 		transitionPanel +="</div>";
@@ -561,6 +561,7 @@ function importDialogueData(){
 //-------------------------------------------------------------------------------------
 function toggleExpansion(accordionID){
 	saveTopic();
+	var caption = document.getElementById(accordionID+"_caption");
 	var accordion = document.getElementById(accordionID);
 	var caption = document.getElementById(accordionID+"_caption");
 	var content = document.getElementById(accordionID+"_content");

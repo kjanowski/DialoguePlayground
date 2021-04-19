@@ -25,22 +25,22 @@
 <body>
 <div class="page">
 	<div class="tabPanel" id="flowViewerTab">
+		<button class="help-button" type="button" onclick="toggleVisibility('help-flow');"><span class="icon icon-help"/></button>
+		<div class="help-popup" id="help-flow" style="visibility:hidden;">Hier werden die verschiedenen Themen und ihre Verbindungen angezeigt. Klicke auf einen Kasten, um das Thema auszuwählen.</div>
 		<div class="viewport">
 			<svg id="flowViewer"></svg>
 		</div>
-		<button class="help-button" type="button" onclick="toggleVisibility('help-flow');">?</button>
-		<div class="help-popup" id="help-flow" style="visibility:hidden;">Hier werden die verschiedenen Themen und ihre Verbindungen angezeigt. Klicke auf einen Kasten, um das Thema auszuwählen.</div>
 			
 		<div class="panel" id="importExportPanel">
-			<textarea id="dialogueData" rows="10" cols="100"></textarea>
-			<button type="button" id="importButton" onclick="importDialogueData();">importieren</button>
-			<button type="button" id="exportButton" onclick="exportDialogueData();">exportieren</button>
-			<button class="help-button" type="button" onclick="toggleVisibility('help-data');">?</button>
+			<button type="button" id="importButton" onclick="importDialogueData();"><span class="icon icon-import button-caption">importieren</span></button>
+			<button type="button" id="exportButton" onclick="exportDialogueData();"><span class="icon icon-export button-caption">exportieren</span></button>
+			<button class="help-button" type="button" onclick="toggleVisibility('help-data');"><span class="icon icon-help"/></button>
 			<div class="help-popup" id="help-data" style="visibility:hidden;">Dieses Feld dient dazu, den Dialog in eine Textdatei zu kopieren, oder umgekehrt. Mit "importieren" wird der aktuelle Dialog durch die Daten im Feld ersetzt. Mit "exportieren" werden die Daten des aktuellen Dialogs in das Feld geschrieben.</div>
+			<textarea id="dialogueData" rows="10" cols="100"></textarea>
 		</div>
 	</div>
 	<div class="tabPanel" id="toolshelf">
-		<button type="button" onclick="addTopic();">neues Thema</button>
+		<button type="button" class="add-button" onclick="addTopic();"><span class="icon icon-add button-caption">neues Thema</span></button>
 		<form id="topicEditor">
 			<div class="accordion" id="accordionAppearance">
 				<div class="caption" id="accordionAppearance_caption" onclick="toggleExpansion('accordionAppearance');">▼ Darstellung</div>
@@ -56,6 +56,8 @@
 						<input class="coordinates" type="number" id="topicX" value="10"/>
 						<label for="topicY">Y:</label>
 						<input class="coordinates" type="number" id="topicY" value="10"/>
+						<button class="help-button" type="button" onclick="toggleVisibility('help-topicAppearance');"><span class="icon icon-help"/></button>
+						<div class="help-popup" id="help-topicAppearance" style="visibility:hidden;">Der Name und die Position bestimmen, wie und wo der Knoten dargestellt wird.</div>
 					</div>
 				</div>
 			</div>
@@ -89,6 +91,8 @@
 					<div class="panel">
 						<label for="topicQuestion">Frage:</label>
 						<input type="text" id="topicQuestion" value="Wie geht es dir?"/>
+						<button class="help-button" type="button" onclick="toggleVisibility('help-topicAction');"><span class="icon icon-help"/></button>
+						<div class="help-popup" id="help-topicAction" style="visibility:hidden;">Hier wird festgelegt, was die Figur sagt und tut.</div>
 					</div>
 				</div>
 			</div>
@@ -104,9 +108,12 @@
 						<br>
 						<div class="panel">
 							<div id="topicAnswers"></div>
-							<button type="button" onclick="addAnswer();">neue Antwort</button>
+							<button class="add-button" type="button" onclick="addAnswer();"><span class="icon icon-add button-caption">neue Antwort</span></button>
+							<button class="help-button" type="button" onclick="toggleVisibility('help-topicAnswers');"><span class="icon icon-help"/></button>
+							<div class="help-popup" id="help-topicAnswers" style="visibility:hidden;">Hier wird festgelegt, was du der Figur antworten kannst. Jede Antwort hat einen Text und einen Wert, welcher der abgefragtren Variable zugewiesen wird.</div>
 						</div>
 					</div>
+					
 				</div>
 			</div>
 			<div class="accordion" id="accordionTransitions">
@@ -114,12 +121,15 @@
 				<div class="content" id="accordionTransitions_content" style="display:none;">
 					<div class="panel">
 						<div id="topicTransitions"></div>
-						<button type="button" onclick="addTransition();">neuer Übergang</button>
+						<button class="add-button" type="button" onclick="addTransition();"><span class="icon icon-add button-caption">neuer Übergang</span></button>
+						<button class="help-button" type="button" onclick="toggleVisibility('help-topicTransitions');"><span class="icon icon-help"/></button>
+						<div class="help-popup" id="help-topicTransitions" style="visibility:hidden;">Hier wird festgelegt, wohin das Gespräch als nächstes führt. Dazu werden die Variablen geprüft, welche zuvor abgefragt wurden.
+						</div>
 					</div>
 				</div>
 			</div>
-			<button type="button" onclick="saveTopic();">Thema speichern</button>
-			<button type="button" onclick="deleteTopic();">Thema löschen</button>
+			<button type="button" class="save-button" onclick="saveTopic();"><span class="icon icon-yes button-caption">Thema speichern</span></button>
+			<button type="button" class="delete-button" onclick="deleteTopic();"><span class="icon icon-delete button-caption">Thema löschen</span></button>
 		</form>
 	</div>
 		
@@ -129,12 +139,23 @@
 			initAgent(webglcontainer);
 		</script>
 		<div class="panel" id="playControls">
-			<button type="button" id="playAll" onclick="playAll();">ab Anfang abspielen</button>
-			<button type="button" id="playTopic" onclick="play();">ab aktuellem Thema abspielen</button>
-			<button type="button" id="stop" onclick="stop();">abspielen stoppen</button>
+			<button type="button" id="playAll" onclick="playAll();"><span class="icon icon-play-all button-caption">von Anfang</span></button>
+			<button type="button" id="playTopic" onclick="play();"><span class="icon icon-play-here button-caption">von hier</span></button>
+			<button type="button" id="stop" onclick="stop();"><span class="icon icon-stop button-caption">Stop</span></button>
 		</div>		
 		<div id="answerOptions"></div>
 	</div>
 </div>
+<div id="about-panel">
+	<div id="about-text">
+		Dieser Dialog-Editor wurde entwickelt von <a href="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/hcm/team/kathrin-janowski/" target="_blank">Kathrin Janowski</a>, zur Verwendung für den
+		<a href="https://www.girls-day.de/" target="_blank">Girls' Day</a> 2021.
+		<br>
+		Der Quellcode für den Editor ist verfügbar auf GitHub: <a href="https://github.com/kjanowski/DialoguePlayground" target="_blank">Dialogue Playground</a>
+	</div>
+	<div id="about-trigger">
+		Über diesen Editor... 
+	</div>
+</div> 
 </body>
 </html>
