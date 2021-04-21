@@ -34,8 +34,8 @@ var keypoints = new Array();
 keypoints['head'] = {x: 150, y: 150, r:50};
 keypoints['leftEye'] = {x: 170, y: 140, r:10};
 keypoints['rightEye'] = {x: 130, y: 140, r:10};
-keypoints['leftLipCorner'] = {x: 170, y: 170};
-keypoints['rightLipCorner'] = {x: 130, y: 170};
+keypoints['leftLipCorner'] = {x: 170, y: 170, x_neutral: 170, y_neutral: 170};
+keypoints['rightLipCorner'] = {x: 130, y: 170, x_neutral: 130, y_neutral: 170};
 keypoints['upperLipControl'] = {x: 150, y: 170};
 keypoints['lowerLipControl'] = {x: 150, y: 175, y_neutral: 175};
 
@@ -44,6 +44,7 @@ var frameLength = 40;
 
 var activeAnims = new Array();
 activeAnims['mouth'] = {task: undefined, counter: 0};
+activeAnims['lipCorners'] = {task: undefined, counter: 0};
 
 
 //=====================================================================================================
@@ -71,7 +72,14 @@ function initAgent(targetContainer)
 function playAnimation(animName){
 	if(animName.length>0)
 	try{
-		console.log("Can't play animations yet.")
+		if(animName == "emot_happy")
+		{
+			animate('lipCorners', 'smile');
+		}else if(animName == 'emot_sad')
+		{
+			animate('lipCorners', 'frown');			
+		}
+		else console.log("unknown animation: "+animName);
 	}catch(error)
 	{
 		console.log("Could not play animation \""+animName+"\": "+error);
@@ -204,8 +212,15 @@ function animate(channel, name){
 			console.log("starting animation: speak");
 			activeAnims['mouth'].task = setInterval(anim_mouth_speak, frameLength);
 		}else if(name == 'silent')
-			resetAnim_mouth_speak();
+			resetAnim_mouth();
+	}else if(channel =='lipCorners'){
+		if(name == 'smile')
+			activeAnims['lipCorners'].task = setInterval(anim_lips_smile, frameLength);
+		else if(name == 'frown')
+			activeAnims['lipCorners'].task = setInterval(anim_lips_frown, frameLength);
+		else resetAnim_lipCorners();
 	}
+	
 }
 
 
@@ -221,14 +236,59 @@ function anim_mouth_speak(){
 			activeAnims['mouth'].counter = -1;
 	}
 	activeAnims['mouth'].counter++;
-	console.log("speaking: "+keypoints['lowerLipControl'].y);
 }
 
-function resetAnim_mouth_speak(){
+
+function anim_lips_smile(){
+	var duration = 8;
+	var step_x = 2;
+	var step_y = 1;
+	
+	if(activeAnims['lipCorners'].counter <= duration){
+		keypoints['leftLipCorner'].x = keypoints['leftLipCorner'].x_neutral + activeAnims['lipCorners'].counter*step_x;
+		keypoints['leftLipCorner'].y = keypoints['leftLipCorner'].y_neutral - activeAnims['lipCorners'].counter*step_y;
+		keypoints['rightLipCorner'].x = keypoints['rightLipCorner'].x_neutral - activeAnims['lipCorners'].counter*step_x;
+		keypoints['rightLipCorner'].y = keypoints['rightLipCorner'].y_neutral - activeAnims['lipCorners'].counter*step_y;
+		
+	}else{
+		//clear animation
+		clearInterval(activeAnims['lipCorners'].task);
+		activeAnims['lipCorners'].task = undefined;
+	}
+	activeAnims['lipCorners'].counter++;
+}
+
+function anim_lips_frown(){
+	var duration = 8;
+	var step_x = 1;
+	var step_y = 1;
+	
+	if(activeAnims['lipCorners'].counter <= duration){
+		keypoints['leftLipCorner'].x = keypoints['leftLipCorner'].x_neutral - activeAnims['lipCorners'].counter*step_x;
+		keypoints['leftLipCorner'].y = keypoints['leftLipCorner'].y_neutral + activeAnims['lipCorners'].counter*step_y;
+		keypoints['rightLipCorner'].x = keypoints['rightLipCorner'].x_neutral + activeAnims['lipCorners'].counter*step_x;
+		keypoints['rightLipCorner'].y = keypoints['rightLipCorner'].y_neutral + activeAnims['lipCorners'].counter*step_y;
+		
+	}else{
+		//clear animation
+		clearInterval(activeAnims['lipCorners'].task);
+		activeAnims['lipCorners'].task = undefined;
+	}
+	activeAnims['lipCorners'].counter++;
+}
+
+
+function resetAnim_mouth(){
 	keypoints['lowerLipControl'].y = keypoints['lowerLipControl'].y_neutral;
 }
 
 
+function resetAnim_lipCorners(){
+	keypoints['leftLipCorner'].x = keypoints['leftLipCorner'].x_neutral;
+	keypoints['leftLipCorner'].y = keypoints['leftLipCorner'].y_neutral;
+	keypoints['rightLipCorner'].x = keypoints['rightLipCorner'].x_neutral;
+	keypoints['rightLipCorner'].y = keypoints['rightLipCorner'].y_neutral;
+}
 
 //-------------------------------------------------------------------------------------
 // Creates a dropdown for choosing one of the available voices.
