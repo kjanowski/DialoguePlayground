@@ -31,45 +31,45 @@ voice.rate = 1.0;	//from 0.1 to 10
 voice.pitch = 1.0;	//from 0 to 2
 
 var agentBody = new Array();
-agentBody['head'] = {x: 200, y: 150, rx:45, ry:50};
-agentBody['hair'] = {x: 200, y: 140, rx:50, ry:60};
+agentBody['head'] = {x: 300, y: 150, rx:45, ry:50};
+agentBody['hair'] = {x: 300, y: 140, rx:50, ry:60};
 
-agentBody['leftEye'] = {x: 220, y: 140, r:8, r_neutral:8};
-agentBody['rightEye'] = {x: 180, y: 140, r:8, r_neutral:8};
-agentBody['leftEyebrowOuter'] = {x: 230, y: 125, y_neutral: 125};
-agentBody['leftEyebrowCenter'] = {x: 220, y: 120, y_neutral: 120};
-agentBody['leftEyebrowInner'] = {x: 210, y: 125, x_neutral: 210, y_neutral: 125};
-agentBody['rightEyebrowOuter'] = {x: 170, y: 125, y_neutral: 125};
-agentBody['rightEyebrowCenter'] = {x: 180, y: 120, y_neutral: 120};
-agentBody['rightEyebrowInner'] = {x: 190, y: 125, x_neutral: 190, y_neutral: 125};
-agentBody['leftLipCorner'] = {x: 220, y: 170, x_neutral: 220, y_neutral: 170};
-agentBody['rightLipCorner'] = {x: 180, y: 170, x_neutral: 180, y_neutral: 170};
-agentBody['upperLipControl'] = {x: 200, y: 170, y_neutral: 170};
-agentBody['lowerLipControl'] = {x: 200, y: 175, y_neutral: 175};
+agentBody['leftEye'] = {x: 320, y: 140, r:8, r_neutral:8};
+agentBody['rightEye'] = {x: 280, y: 140, r:8, r_neutral:8};
+agentBody['leftEyebrowOuter'] = {x: 330, y: 125, y_neutral: 125};
+agentBody['leftEyebrowCenter'] = {x: 320, y: 120, y_neutral: 120};
+agentBody['leftEyebrowInner'] = {x: 310, y: 125, x_neutral: 310, y_neutral: 125};
+agentBody['rightEyebrowOuter'] = {x: 270, y: 125, y_neutral: 125};
+agentBody['rightEyebrowCenter'] = {x: 280, y: 120, y_neutral: 120};
+agentBody['rightEyebrowInner'] = {x: 290, y: 125, x_neutral: 290, y_neutral: 125};
+agentBody['leftLipCorner'] = {x: 320, y: 170, x_neutral: 320, y_neutral: 170};
+agentBody['rightLipCorner'] = {x: 280, y: 170, x_neutral: 280, y_neutral: 170};
+agentBody['upperLipControl'] = {x: 300, y: 170, y_neutral: 170};
+agentBody['lowerLipControl'] = {x: 300, y: 175, y_neutral: 175};
 
-agentBody['neckTop'] = {x: 200, y: 180};
-agentBody['neckBottom'] = {x: 200, y: 250};
+agentBody['neckTop'] = {x: 300, y: 180};
+agentBody['neckBottom'] = {x: 300, y: 250};
 
-agentBody['chest'] = {x: 200, y: 280, rx:45, ry:50};
-agentBody['waist'] = {x: 200, y: 320, rx:40, ry:45};
-agentBody['hips'] = {x: 200, y: 370, rx:40, ry:45};
+agentBody['chest'] = {x: 300, y: 280, rx:45, ry:50};
+agentBody['waist'] = {x: 300, y: 320, rx:40, ry:45};
+agentBody['hips'] = {x: 300, y: 370, rx:40, ry:45};
 
-agentBody['leftShoulder'] = {x: 250, y: 250};
+agentBody['leftShoulder'] = {x: 350, y: 250};
 agentBody['leftUpperArm'] = {length: 100, angle: 85, angle_neutral: 85};
 agentBody['leftLowerArm'] = {length: 90, angle: 95, angle_neutral: 95};
 
-agentBody['rightShoulder'] = {x: 150, y: 250};
+agentBody['rightShoulder'] = {x: 250, y: 250};
 agentBody['rightUpperArm'] = {length: 100, angle: 95, angle_neutral: 95};
 agentBody['rightLowerArm'] = {length: 90, angle: 85, angle_neutral: 85};
 
-agentBody['leftHip'] = {x: 220, y: 360};
-agentBody['leftKnee'] = {x: 230, y: 480, x_neutral: 230, y_neutral: 480};
-agentBody['leftAnkle'] = {x: 220, y: 600, x_neutral: 220, y_neutral: 600};
-agentBody['leftToes'] = {x: 230, y: 650, x_neutral: 230, y_neutral: 650};
-agentBody['rightHip'] = {x: 180, y: 360};
-agentBody['rightKnee'] = {x: 170, y: 480, x_neutral: 170, y_neutral: 480};
-agentBody['rightAnkle'] = {x: 180, y: 600, x_neutral: 180, y_neutral: 600};
-agentBody['rightToes'] = {x: 170, y: 650, x_neutral: 170, y_neutral: 650};
+agentBody['leftHip'] = {x: 320, y: 360};
+agentBody['leftKnee'] = {x: 330, y: 480, x_neutral: 330, y_neutral: 480};
+agentBody['leftAnkle'] = {x: 320, y: 600, x_neutral: 320, y_neutral: 600};
+agentBody['leftToes'] = {x: 330, y: 650, x_neutral: 330, y_neutral: 650};
+agentBody['rightHip'] = {x: 280, y: 360};
+agentBody['rightKnee'] = {x: 270, y: 480, x_neutral: 270, y_neutral: 480};
+agentBody['rightAnkle'] = {x: 280, y: 600, x_neutral: 280, y_neutral: 600};
+agentBody['rightToes'] = {x: 270, y: 650, x_neutral: 270, y_neutral: 650};
 
 
 var mainTask = undefined;
@@ -157,6 +157,8 @@ function playAnimation(animName){
 			animate('arms','onHips');
 		}else if(animName == 'arms_cross'){
 			animate('arms','cross');
+		}else if(animName == 'arms_shrug'){
+			animate('arms','shrug');
 		}else if(animName == 'arms_neutral'){
 			animate('arms','neutral');
 		}
@@ -229,7 +231,7 @@ function createBody(){
 }
 
 function drawBody(){
-	var svgContent = "<svg width=\"300\" height=\"700\">";
+	var svgContent = "<svg width=\"600\" height=\"700\">";
 	
 	//neck
 	svgContent += drawNeck();	
@@ -243,11 +245,12 @@ function drawBody(){
 	svgContent += drawMouth();
 	
 	//arms
-	svgContent += drawArms();
+	svgContent += drawUpperArms();
 	//legs
 	svgContent += drawLegs();	
 	//torso
 	svgContent += drawTorso();
+	svgContent += drawLowerArms();
 
 	
 	//close SVG element
@@ -297,7 +300,7 @@ function drawMouth(){
 	return mouthSVG;
 }
 
-function drawArms(){
+function drawUpperArms(){
 	var leftUpperArmRad = agentBody['leftUpperArm'].angle/180*Math.PI;
 	var leftElbow = {
 						x: agentBody['leftShoulder'].x + Math.cos(leftUpperArmRad)*agentBody['leftUpperArm'].length,
@@ -325,11 +328,46 @@ function drawArms(){
 	var armSVG = "<path class=\"agent-arm\" d=\""
 				  +"M "+agentBody['leftShoulder'].x+" "+agentBody['leftShoulder'].y
 				  +" L "+leftElbow.x+" "+leftElbow.y
-				  +" L "+leftWrist.x+" "+leftWrist.y
 				  +"\"/>";
 	armSVG += "<path class=\"agent-arm\" d=\""
 				  +"M "+agentBody['rightShoulder'].x+" "+agentBody['rightShoulder'].y
 				  +" L "+rightElbow.x+" "+rightElbow.y
+				  +"\"/>";
+	return armSVG;
+}
+
+
+function drawLowerArms(){
+	var leftUpperArmRad = agentBody['leftUpperArm'].angle/180*Math.PI;
+	var leftElbow = {
+						x: agentBody['leftShoulder'].x + Math.cos(leftUpperArmRad)*agentBody['leftUpperArm'].length,
+						y: agentBody['leftShoulder'].y + Math.sin(leftUpperArmRad)*agentBody['leftUpperArm'].length
+					};
+	var leftLowerArmRad = agentBody['leftLowerArm'].angle/180*Math.PI;
+	var leftWrist = {
+						x: leftElbow.x + Math.cos(leftLowerArmRad)*agentBody['leftLowerArm'].length,
+						y: leftElbow.y + Math.sin(leftLowerArmRad)*agentBody['leftLowerArm'].length
+					};
+					
+	
+	var rightUpperArmRad = agentBody['rightUpperArm'].angle/180*Math.PI;
+	var rightElbow = {
+						x: agentBody['rightShoulder'].x + Math.cos(rightUpperArmRad)*agentBody['rightUpperArm'].length,
+						y: agentBody['rightShoulder'].y + Math.sin(rightUpperArmRad)*agentBody['rightUpperArm'].length
+					};
+	var rightLowerArmRad = agentBody['rightLowerArm'].angle/180*Math.PI;
+	var rightWrist = {
+						x: rightElbow.x + Math.cos(rightLowerArmRad)*agentBody['rightLowerArm'].length,
+						y: rightElbow.y + Math.sin(rightLowerArmRad)*agentBody['rightLowerArm'].length
+					};
+	
+	
+	var armSVG = "<path class=\"agent-arm\" d=\""
+				  +"M "+leftElbow.x+" "+leftElbow.y
+				  +" L "+leftWrist.x+" "+leftWrist.y
+				  +"\"/>";
+	armSVG += "<path class=\"agent-arm\" d=\""
+				  +"M "+rightElbow.x+" "+rightElbow.y
 				  +" L "+rightWrist.x+" "+rightWrist.y
 				  +"\"/>";
 	return armSVG;
@@ -445,6 +483,8 @@ function animate(channel, name){
 			activeAnims['arms'].task = setInterval(anim_arms_onHips, frameLength);
 		else if(name == 'cross')
 			activeAnims['arms'].task = setInterval(anim_arms_cross, frameLength);
+		else if(name == 'shrug')
+			activeAnims['arms'].task = setInterval(anim_arms_shrug, frameLength);
 		else if (name=='neutral')
 			resetAnim_arms();
 	}
@@ -575,6 +615,9 @@ function anim_brows_surprise(){
 	var duration = 8;
 	var step = 2;
 	
+	agentBody['leftEyebrowInner'].x = agentBody['leftEyebrowInner'].x_neutral;	
+	agentBody['rightEyebrowInner'].x = agentBody['rightEyebrowInner'].x_neutral;	
+		
 	if(activeAnims['eyebrows'].counter <= duration){
 		agentBody['leftEyebrowOuter'].y = agentBody['leftEyebrowOuter'].y_neutral - activeAnims['eyebrows'].counter*step;	
 		agentBody['leftEyebrowCenter'].y = agentBody['leftEyebrowCenter'].y_neutral - activeAnims['eyebrows'].counter*step;
@@ -596,6 +639,11 @@ function anim_brows_sadness(){
 	var step_center = 1;
 	var step_inner = 2;
 	
+	agentBody['leftEyebrowOuter'].y = agentBody['leftEyebrowOuter'].y_neutral;	
+	agentBody['rightEyebrowOuter'].y = agentBody['rightEyebrowOuter'].y_neutral;	
+	agentBody['leftEyebrowInner'].x = agentBody['leftEyebrowInner'].x_neutral;	
+	agentBody['rightEyebrowInner'].x = agentBody['rightEyebrowInner'].x_neutral;	
+
 	if(activeAnims['eyebrows'].counter <= duration){
 		agentBody['leftEyebrowCenter'].y = agentBody['leftEyebrowCenter'].y_neutral - activeAnims['eyebrows'].counter*step_center;
 		agentBody['leftEyebrowInner'].y = agentBody['leftEyebrowInner'].y_neutral - activeAnims['eyebrows'].counter*step_inner;
@@ -616,6 +664,9 @@ function anim_brows_fear(){
 	var step_inner = 2;
 	var step_x = 1;
 	
+	agentBody['leftEyebrowOuter'].y = agentBody['leftEyebrowOuter'].y_neutral;	
+	agentBody['rightEyebrowOuter'].y = agentBody['rightEyebrowOuter'].y_neutral;	
+
 	if(activeAnims['eyebrows'].counter <= duration){
 		agentBody['leftEyebrowCenter'].y = agentBody['leftEyebrowCenter'].y_neutral - activeAnims['eyebrows'].counter*step_center;
 		agentBody['leftEyebrowInner'].x = agentBody['leftEyebrowInner'].x_neutral - activeAnims['eyebrows'].counter*step_x;
@@ -638,6 +689,9 @@ function anim_brows_anger(){
 	var step_inner = 2;
 	var step_x = 1;
 	
+	agentBody['leftEyebrowOuter'].y = agentBody['leftEyebrowOuter'].y_neutral;	
+	agentBody['rightEyebrowOuter'].y = agentBody['rightEyebrowOuter'].y_neutral;	
+
 	if(activeAnims['eyebrows'].counter <= duration){
 		agentBody['leftEyebrowCenter'].y = agentBody['leftEyebrowCenter'].y_neutral + activeAnims['eyebrows'].counter*step_center;
 		agentBody['leftEyebrowInner'].x = agentBody['leftEyebrowInner'].x_neutral - activeAnims['eyebrows'].counter*step_x;
@@ -657,7 +711,10 @@ function anim_brows_anger(){
 
 function anim_arms_wave(){
 	var step_upper = 12;
-	var step_lower = 10;
+	var step_lower = 8;
+	
+	agentBody['leftUpperArm'].angle = agentBody['leftUpperArm'].angle_neutral;
+	agentBody['leftLowerArm'].angle = agentBody['leftLowerArm'].angle_neutral;		
 	
 	if(activeAnims['arms'].counter <= 12){
 		agentBody['rightUpperArm'].angle = agentBody['rightUpperArm'].angle_neutral + activeAnims['arms'].counter*step_upper;
@@ -678,6 +735,96 @@ function anim_arms_wave(){
 	else if(activeAnims['arms'].counter <= 64){
 		agentBody['rightUpperArm'].angle = agentBody['rightUpperArm'].angle_neutral +(64-activeAnims['arms'].counter)*step_upper;
 		agentBody['rightLowerArm'].angle = agentBody['rightLowerArm'].angle_neutral +(64-activeAnims['arms'].counter)*step_upper;
+	}
+	
+	else{
+		//clear animation
+		clearInterval(activeAnims['arms'].task);
+		activeAnims['arms'].task = undefined;
+	}
+	activeAnims['arms'].counter++;
+}
+
+function anim_arms_onHips(){
+	var step_left_upper = -4;
+	var step_left_lower = 5;
+	var step_right_upper = 4;
+	var step_right_lower = -5;
+	
+	if(activeAnims['arms'].counter <= 12){
+		agentBody['rightUpperArm'].angle = agentBody['rightUpperArm'].angle_neutral + activeAnims['arms'].counter*step_right_upper;
+		agentBody['rightLowerArm'].angle = agentBody['rightLowerArm'].angle_neutral + activeAnims['arms'].counter*step_right_lower;		
+		agentBody['leftUpperArm'].angle = agentBody['leftUpperArm'].angle_neutral + activeAnims['arms'].counter*step_left_upper;
+		agentBody['leftLowerArm'].angle = agentBody['leftLowerArm'].angle_neutral + activeAnims['arms'].counter*step_left_lower;		
+	}
+	else if(activeAnims['arms'].counter <= 52){
+		//do nothing
+	}
+	else if(activeAnims['arms'].counter <= 64){
+		agentBody['rightUpperArm'].angle = agentBody['rightUpperArm'].angle_neutral +(64-activeAnims['arms'].counter)*step_right_upper;
+		agentBody['rightLowerArm'].angle = agentBody['rightLowerArm'].angle_neutral +(64-activeAnims['arms'].counter)*step_right_lower;
+		agentBody['leftUpperArm'].angle = agentBody['leftUpperArm'].angle_neutral +(64-activeAnims['arms'].counter)*step_left_upper;
+		agentBody['leftLowerArm'].angle = agentBody['leftLowerArm'].angle_neutral +(64-activeAnims['arms'].counter)*step_left_lower;
+	}
+	
+	else{
+		//clear animation
+		clearInterval(activeAnims['arms'].task);
+		activeAnims['arms'].task = undefined;
+	}
+	activeAnims['arms'].counter++;
+}
+
+function anim_arms_shrug(){
+	var step_left_upper = -5;
+	var step_left_lower = -10;
+	var step_right_upper = 5;
+	var step_right_lower = 10;
+	
+	if(activeAnims['arms'].counter <= 12){
+		agentBody['rightUpperArm'].angle = agentBody['rightUpperArm'].angle_neutral + activeAnims['arms'].counter*step_right_upper;
+		agentBody['rightLowerArm'].angle = agentBody['rightLowerArm'].angle_neutral + activeAnims['arms'].counter*step_right_lower;		
+		agentBody['leftUpperArm'].angle = agentBody['leftUpperArm'].angle_neutral + activeAnims['arms'].counter*step_left_upper;
+		agentBody['leftLowerArm'].angle = agentBody['leftLowerArm'].angle_neutral + activeAnims['arms'].counter*step_left_lower;		
+	}
+	else if(activeAnims['arms'].counter <= 52){
+		//do nothing
+	}
+	else if(activeAnims['arms'].counter <= 64){
+		agentBody['rightUpperArm'].angle = agentBody['rightUpperArm'].angle_neutral +(64-activeAnims['arms'].counter)*step_right_upper;
+		agentBody['rightLowerArm'].angle = agentBody['rightLowerArm'].angle_neutral +(64-activeAnims['arms'].counter)*step_right_lower;
+		agentBody['leftUpperArm'].angle = agentBody['leftUpperArm'].angle_neutral +(64-activeAnims['arms'].counter)*step_left_upper;
+		agentBody['leftLowerArm'].angle = agentBody['leftLowerArm'].angle_neutral +(64-activeAnims['arms'].counter)*step_left_lower;
+	}
+	
+	else{
+		//clear animation
+		clearInterval(activeAnims['arms'].task);
+		activeAnims['arms'].task = undefined;
+	}
+	activeAnims['arms'].counter++;
+}
+
+function anim_arms_cross(){
+	var step_left_upper = 0.5;
+	var step_left_lower = 6;
+	var step_right_upper = -0.5;
+	var step_right_lower = -7;
+	
+	if(activeAnims['arms'].counter <= 12){
+		agentBody['rightUpperArm'].angle = agentBody['rightUpperArm'].angle_neutral + activeAnims['arms'].counter*step_right_upper;
+		agentBody['rightLowerArm'].angle = agentBody['rightLowerArm'].angle_neutral + activeAnims['arms'].counter*step_right_lower;		
+		agentBody['leftUpperArm'].angle = agentBody['leftUpperArm'].angle_neutral + activeAnims['arms'].counter*step_left_upper;
+		agentBody['leftLowerArm'].angle = agentBody['leftLowerArm'].angle_neutral + activeAnims['arms'].counter*step_left_lower;		
+	}
+	else if(activeAnims['arms'].counter <= 52){
+		//do nothing
+	}
+	else if(activeAnims['arms'].counter <= 64){
+		agentBody['rightUpperArm'].angle = agentBody['rightUpperArm'].angle_neutral +(64-activeAnims['arms'].counter)*step_right_upper;
+		agentBody['rightLowerArm'].angle = agentBody['rightLowerArm'].angle_neutral +(64-activeAnims['arms'].counter)*step_right_lower;
+		agentBody['leftUpperArm'].angle = agentBody['leftUpperArm'].angle_neutral +(64-activeAnims['arms'].counter)*step_left_upper;
+		agentBody['leftLowerArm'].angle = agentBody['leftLowerArm'].angle_neutral +(64-activeAnims['arms'].counter)*step_left_lower;
 	}
 	
 	else{

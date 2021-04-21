@@ -52,7 +52,7 @@
 	--panel-shadow: 0px 0px 10px #000000;
 	--inset-shadow: 0px 0px 10px #000000 inset;
 	
-	--page-width: 1600px;
+	--page-width: 1800px;
 	--panel-padding: 10px;
 	
 	--flow-panel-width: 320px;
@@ -413,7 +413,7 @@ button{
 
 #agentPanel{
 	padding:0px;
-	width:700px;
+	width:900px;
 	height:800px;
 	background:var(--bg-color-dark);
 }
@@ -421,7 +421,7 @@ button{
 #webglcontainer{
 	z-Index: var(--layer-agent);
 	position:relative;
-	width: 400px;
+	width: 600px;
 	height: 800px;
 	background: var(--bg-color-bright);
 	box-shadow: var(--inset-shadow);
