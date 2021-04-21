@@ -16,7 +16,8 @@
 */
 
 :root{
-	--fill-color-skin: #ffff00;
+	--fill-color-skin: #b0afff;
+	--stroke-color-brow: #504f88;
 	--fill-color-eyes: #000000;
 	--fill-color-mouth: #aa3344;	
 }
@@ -46,6 +47,12 @@
 	fill: var(--fill-color-skin);
 	fill-opacity: 1.0;
 	stroke: transparent;
+}
+
+.agent-brow{
+	fill: transparent;
+	stroke: var(--stroke-color-brow);
+	stroke-width: 3;
 }
 
 .agent-eye{
