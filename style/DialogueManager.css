@@ -449,3 +449,9 @@ button{
 	left:5px;
 	z-index: var(--layer-editor);
 }
+
+#voiceSelection{
+	position: absolute;
+	left:0px;
+	top: 750px;
+}

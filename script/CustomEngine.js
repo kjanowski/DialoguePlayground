@@ -83,6 +83,12 @@ function playAnimation(animName){
 //-------------------------------------------------------------------------------------
 function speak(utterance)
 {
+	//update voice
+	var voiceSelect = document.getElementById("voiceSelect");
+	if (voiceSelect != undefined){
+		voice.index = voiceSelect.value;
+	}
+	
 	if('speechSynthesis' in window)
 	{
 		animate('mouth', 'speak');
@@ -95,7 +101,7 @@ function speak(utterance)
 		msg.pitch = voice.pitch;
 		msg.onend = function(){
 				animate('mouth', 'silent');
-		};
+			};
 		
 		var voices = window.speechSynthesis.getVoices(); 
 		console.log("#voices: "+voices.length);
@@ -227,21 +233,38 @@ function resetAnim_mouth_speak(){
 //-------------------------------------------------------------------------------------
 // Creates a dropdown for choosing one of the available voices.
 //-------------------------------------------------------------------------------------
-//TODO: when should I call this? On load, the voices are not available yet...
-function createVoiceSelector(){
-	var dropdown = "";
+function updateVoiceSelect(){
 	if('speechSynthesis' in window)
 	{
-		var voices = window.speechSynthesis.getVoices();
-		console.log("#voices: "+voices.length);
+		animate('mouth', 'speak');
 		
-		dropdown = "<select id=\"voiceSelect\">";
-		var i;
-		for(i=0; i<voices.length; i++){
-			dropdown += "<option value=\""+i+"\">"+voices[i].name+"</option>";	
-		}
-		dropdown +="</select>";
-	}
+		var msg = new SpeechSynthesisUtterance();
+		msg.text = "Lade Stimmen.";
+		msg.onend = function(){
+			var section = document.getElementById("voiceSelection")
+	
+			var dropdown = "";
+			if('speechSynthesis' in window)
+			{
+				var voices = window.speechSynthesis.getVoices();
+				console.log("#voices: "+voices.length);
+				
+				dropdown = "<select id=\"voiceSelect\" value=\"0\">";
+				var i;
+				for(i=0; i<voices.length; i++){
+					dropdown += "<option value=\""+i+"\">"+voices[i].name+"</option>";	
+				}
+				dropdown +="</select>";
+			}
 
-	return dropdown;
+			section.innerHTML = dropdown;
+			
+			animate('mouth', 'silent');
+		};
+		
+		window.speechSynthesis.speak(msg);	
+	}
+	else{
+		console.log("Speech synthesis not supported by this browser.")
+	}
 }
