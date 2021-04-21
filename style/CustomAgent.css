@@ -1,0 +1,64 @@
+/*
+	Copyright Kathrin Janowski (https://www.kathrinjanowski.com/en/home), 2021.
+  
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+:root{
+	--fill-color-skin: #ffff00;
+	--fill-color-eyes: #000000;
+	--fill-color-mouth: #aa3344;	
+}
+
+
+
+/*-------------------------------------------------
+  animations
+-------------------------------------------------*/
+
+@keyframes speak{
+	0% {d: M 130 160 Q 150 170 170 160 Q 150 165 130 160;}
+	50% {d: M 130 160 Q 150 170 170 160 Q 150 200 130 160;}
+	100% {d: M 130 160 Q 150 170 170 160 Q 150 165 130 160;}
+}
+
+@keyframes silent{
+	100% {d: M 130 160 Q 150 170 170 160 Q 150 165 130 160;}
+}
+
+
+/*-------------------------------------------------
+  SVG elements
+-------------------------------------------------*/
+
+.agent-head{
+	fill: var(--fill-color-skin);
+	fill-opacity: 1.0;
+	stroke: transparent;
+}
+
+.agent-eye{
+	fill: var(--fill-color-eye);
+	fill-opacity: 1.0;
+	stroke: transparent;
+}
+
+.agent-mouth{
+	fill: var(--fill-color-mouth);
+	fill-opacity: 1.0;
+	stroke: transparent;
+	d: M 130 160 Q 150 170 170 160 Q 150 165 130 160;
+}
+
+
