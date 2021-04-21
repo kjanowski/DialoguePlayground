@@ -22,7 +22,7 @@
 	--color-mouth: #aa3344;	
 	--color-top: seaGreen;	
 	--color-pants: darkSlateGray;	
-	--color-shoes: indigo;
+	--color-shoes: maroon;
 }
 
 
@@ -75,14 +75,14 @@
 
 .agent-neck{
 	fill: transparent;
-	stroke-width: 10;
+	stroke-width: 30;
 	stroke: var(--color-skin);
 	stroke-linecap: round;
 }
 
 .agent-arm{
 	fill: transparent;
-	stroke-width: 15;
+	stroke-width: 25;
 	stroke: var(--color-skin);
 	stroke-linecap: round;
 }
@@ -97,14 +97,14 @@
 
 .agent-leg{
 	fill: transparent;
-	stroke-width: 20;
+	stroke-width: 30;
 	stroke: var(--color-pants);
 	stroke-linecap: round;
 }
 
 .agent-foot{
 	fill: transparent;
-	stroke-width: 25;
+	stroke-width: 35;
 	stroke: var(--color-shoes);
 	stroke-linecap: round;
 }
@@ -121,7 +121,7 @@
 
 .agent-sleeve{
 	fill: transparent;
-	stroke-width: 25;
+	stroke-width: 35;
 	stroke: var(--color-top);
 	stroke-linecap: round;
 }

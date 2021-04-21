@@ -30,45 +30,46 @@ voice.volume = 1.0;	//from 0 to 1
 voice.rate = 1.0;	//from 0.1 to 10
 voice.pitch = 1.0;	//from 0 to 2
 
-var keypoints = new Array();
-keypoints['head'] = {x: 200, y: 150, rx:45, ry:50};
-keypoints['hair'] = {x: 200, y: 140, rx:50, ry:60};
+var agentBody = new Array();
+agentBody['head'] = {x: 200, y: 150, rx:45, ry:50};
+agentBody['hair'] = {x: 200, y: 140, rx:50, ry:60};
 
-keypoints['leftEye'] = {x: 220, y: 140, r:8, r_neutral:8};
-keypoints['rightEye'] = {x: 180, y: 140, r:8, r_neutral:8};
-keypoints['leftEyebrowOuter'] = {x: 230, y: 125, y_neutral: 125};
-keypoints['leftEyebrowCenter'] = {x: 220, y: 120, y_neutral: 120};
-keypoints['leftEyebrowInner'] = {x: 210, y: 125, x_neutral: 210, y_neutral: 125};
-keypoints['rightEyebrowOuter'] = {x: 170, y: 125, y_neutral: 125};
-keypoints['rightEyebrowCenter'] = {x: 180, y: 120, y_neutral: 120};
-keypoints['rightEyebrowInner'] = {x: 190, y: 125, x_neutral: 190, y_neutral: 125};
-keypoints['leftLipCorner'] = {x: 220, y: 170, x_neutral: 220, y_neutral: 170};
-keypoints['rightLipCorner'] = {x: 180, y: 170, x_neutral: 180, y_neutral: 170};
-keypoints['upperLipControl'] = {x: 200, y: 170, y_neutral: 170};
-keypoints['lowerLipControl'] = {x: 200, y: 175, y_neutral: 175};
+agentBody['leftEye'] = {x: 220, y: 140, r:8, r_neutral:8};
+agentBody['rightEye'] = {x: 180, y: 140, r:8, r_neutral:8};
+agentBody['leftEyebrowOuter'] = {x: 230, y: 125, y_neutral: 125};
+agentBody['leftEyebrowCenter'] = {x: 220, y: 120, y_neutral: 120};
+agentBody['leftEyebrowInner'] = {x: 210, y: 125, x_neutral: 210, y_neutral: 125};
+agentBody['rightEyebrowOuter'] = {x: 170, y: 125, y_neutral: 125};
+agentBody['rightEyebrowCenter'] = {x: 180, y: 120, y_neutral: 120};
+agentBody['rightEyebrowInner'] = {x: 190, y: 125, x_neutral: 190, y_neutral: 125};
+agentBody['leftLipCorner'] = {x: 220, y: 170, x_neutral: 220, y_neutral: 170};
+agentBody['rightLipCorner'] = {x: 180, y: 170, x_neutral: 180, y_neutral: 170};
+agentBody['upperLipControl'] = {x: 200, y: 170, y_neutral: 170};
+agentBody['lowerLipControl'] = {x: 200, y: 175, y_neutral: 175};
 
-keypoints['neckTop'] = {x: 200, y: 180};
-keypoints['neckBottom'] = {x: 200, y: 250};
+agentBody['neckTop'] = {x: 200, y: 180};
+agentBody['neckBottom'] = {x: 200, y: 250};
 
-keypoints['chest'] = {x: 200, y: 280, rx:45, ry:50};
-keypoints['waist'] = {x: 200, y: 320, rx:40, ry:45};
-keypoints['hips'] = {x: 200, y: 370, rx:40, ry:45};
+agentBody['chest'] = {x: 200, y: 280, rx:45, ry:50};
+agentBody['waist'] = {x: 200, y: 320, rx:40, ry:45};
+agentBody['hips'] = {x: 200, y: 370, rx:40, ry:45};
 
-keypoints['leftShoulder'] = {x: 250, y: 250};
-keypoints['leftElbow'] = {x: 260, y: 350, x_neutral: 260, y_neutral: 350};
-keypoints['leftWrist'] = {x: 250, y: 450, x_neutral: 250, y_neutral: 450};
-keypoints['rightShoulder'] = {x: 150, y: 250};
-keypoints['rightElbow'] = {x: 140, y: 350, x_neutral: 140, y_neutral: 350};
-keypoints['rightWrist'] = {x: 150, y: 450, x_neutral: 150, y_neutral: 450};
+agentBody['leftShoulder'] = {x: 250, y: 250};
+agentBody['leftUpperArm'] = {length: 100, angle: 85, angle_neutral: 85};
+agentBody['leftLowerArm'] = {length: 90, angle: 95, angle_neutral: 95};
 
-keypoints['leftHip'] = {x: 220, y: 360};
-keypoints['leftKnee'] = {x: 230, y: 480, x_neutral: 230, y_neutral: 480};
-keypoints['leftAnkle'] = {x: 220, y: 600, x_neutral: 220, y_neutral: 600};
-keypoints['leftToes'] = {x: 230, y: 650, x_neutral: 230, y_neutral: 650};
-keypoints['rightHip'] = {x: 180, y: 360};
-keypoints['rightKnee'] = {x: 170, y: 480, x_neutral: 170, y_neutral: 480};
-keypoints['rightAnkle'] = {x: 180, y: 600, x_neutral: 180, y_neutral: 600};
-keypoints['rightToes'] = {x: 170, y: 650, x_neutral: 170, y_neutral: 650};
+agentBody['rightShoulder'] = {x: 150, y: 250};
+agentBody['rightUpperArm'] = {length: 100, angle: 95, angle_neutral: 95};
+agentBody['rightLowerArm'] = {length: 90, angle: 85, angle_neutral: 85};
+
+agentBody['leftHip'] = {x: 220, y: 360};
+agentBody['leftKnee'] = {x: 230, y: 480, x_neutral: 230, y_neutral: 480};
+agentBody['leftAnkle'] = {x: 220, y: 600, x_neutral: 220, y_neutral: 600};
+agentBody['leftToes'] = {x: 230, y: 650, x_neutral: 230, y_neutral: 650};
+agentBody['rightHip'] = {x: 180, y: 360};
+agentBody['rightKnee'] = {x: 170, y: 480, x_neutral: 170, y_neutral: 480};
+agentBody['rightAnkle'] = {x: 180, y: 600, x_neutral: 180, y_neutral: 600};
+agentBody['rightToes'] = {x: 170, y: 650, x_neutral: 170, y_neutral: 650};
 
 
 var mainTask = undefined;
@@ -80,6 +81,7 @@ activeAnims['upperLip'] = {task: undefined, counter: 0};
 activeAnims['lipCorners'] = {task: undefined, counter: 0};
 activeAnims['eyebrows'] = {task: undefined, counter: 0};
 activeAnims['eyes'] = {task: undefined, counter: 0};
+activeAnims['arms'] = {task: undefined, counter: 0};
 
 
 //=====================================================================================================
@@ -143,13 +145,23 @@ function playAnimation(animName){
 			animate('eyebrows', 'neutral');			
 			animate('upperLip', 'raise');			
 			animate('lipCorners', 'neutral');			
+		}else if(animName == 'emot_neutral')
+		{
+			animate('eyes', 'neutral');			
+			animate('eyebrows', 'neutral');			
+			animate('upperLip', 'neutral');			
+			animate('lipCorners', 'neutral');			
+		}else if(animName == 'arms_wave'){
+			animate('arms','wave');
+		}else if(animName == 'arms_onHips'){
+			animate('arms','onHips');
+		}else if(animName == 'arms_cross'){
+			animate('arms','cross');
+		}else if(animName == 'arms_neutral'){
+			animate('arms','neutral');
 		}
+		
 		else console.log("unknown animation: "+animName);
-	}else{
-		animate('eyes', 'neutral');			
-		animate('eyebrows', 'neutral');
-		animate('upperLip', 'neutral');			
-		animate('lipCorners', 'neutral');
 	}
 }
 
@@ -246,55 +258,79 @@ function drawBody(){
 
 function drawNeck(){
 	var neckSVG = "<path class=\"agent-neck\" d=\""
-				  +"M "+keypoints['neckTop'].x+" "+keypoints['neckTop'].y
-				  +" L "+keypoints['neckBottom'].x+" "+keypoints['neckBottom'].y
+				  +"M "+agentBody['neckTop'].x+" "+agentBody['neckTop'].y
+				  +" L "+agentBody['neckBottom'].x+" "+agentBody['neckBottom'].y
 				  +"\"/>";
 	return neckSVG;
 }
 
 function drawHead(){
-	var headSVG = "<ellipse class=\"agent-hair\" cx=\""+keypoints['hair'].x+"\" cy=\""+keypoints['hair'].y+"\" rx=\""+keypoints['hair'].rx+"\" ry=\""+keypoints['hair'].ry+"\"/>";
-		headSVG += "<ellipse class=\"agent-head\" cx=\""+keypoints['head'].x+"\" cy=\""+keypoints['head'].y+"\" rx=\""+keypoints['head'].rx+"\" ry=\""+keypoints['head'].ry+"\"/>";
+	var headSVG = "<ellipse class=\"agent-hair\" cx=\""+agentBody['hair'].x+"\" cy=\""+agentBody['hair'].y+"\" rx=\""+agentBody['hair'].rx+"\" ry=\""+agentBody['hair'].ry+"\"/>";
+		headSVG += "<ellipse class=\"agent-head\" cx=\""+agentBody['head'].x+"\" cy=\""+agentBody['head'].y+"\" rx=\""+agentBody['head'].rx+"\" ry=\""+agentBody['head'].ry+"\"/>";
 	return headSVG;
 }
 
 function drawBrows(){
 	var browsSVG = "<path id=\"left-brow\" class=\"agent-brow\" d=\""
-				 + "M "+keypoints['leftEyebrowOuter'].x+" "+keypoints['leftEyebrowOuter'].y
-				 + " Q "+keypoints['leftEyebrowCenter'].x+" "+keypoints['leftEyebrowCenter'].y+" "+keypoints['leftEyebrowInner'].x+" "+keypoints['leftEyebrowInner'].y
+				 + "M "+agentBody['leftEyebrowOuter'].x+" "+agentBody['leftEyebrowOuter'].y
+				 + " Q "+agentBody['leftEyebrowCenter'].x+" "+agentBody['leftEyebrowCenter'].y+" "+agentBody['leftEyebrowInner'].x+" "+agentBody['leftEyebrowInner'].y
 				 + "\"/>"
 	browsSVG += "<path id=\"right-brow\" class=\"agent-brow\" d=\""
-				 + "M "+keypoints['rightEyebrowOuter'].x+" "+keypoints['rightEyebrowOuter'].y
-				 + " Q "+keypoints['rightEyebrowCenter'].x+" "+keypoints['rightEyebrowCenter'].y+" "+keypoints['rightEyebrowInner'].x+" "+keypoints['rightEyebrowInner'].y
+				 + "M "+agentBody['rightEyebrowOuter'].x+" "+agentBody['rightEyebrowOuter'].y
+				 + " Q "+agentBody['rightEyebrowCenter'].x+" "+agentBody['rightEyebrowCenter'].y+" "+agentBody['rightEyebrowInner'].x+" "+agentBody['rightEyebrowInner'].y
 				 + "\"/>"
 	return browsSVG;
 }
 
 function drawEyes(){
-	var eyesSVG = "<circle id=\"left-eye\" class=\"agent-eye\" cx=\""+keypoints['leftEye'].x+"\" cy=\""+keypoints['leftEye'].y+"\" r=\""+keypoints['leftEye'].r+"\"/>"
-				+ "<circle id=\"right-eye\" class=\"agent-eye\" cx=\""+keypoints['rightEye'].x+"\" cy=\""+keypoints['rightEye'].y+"\" r=\""+keypoints['rightEye'].r+"\"/>";
+	var eyesSVG = "<circle id=\"left-eye\" class=\"agent-eye\" cx=\""+agentBody['leftEye'].x+"\" cy=\""+agentBody['leftEye'].y+"\" r=\""+agentBody['leftEye'].r+"\"/>"
+				+ "<circle id=\"right-eye\" class=\"agent-eye\" cx=\""+agentBody['rightEye'].x+"\" cy=\""+agentBody['rightEye'].y+"\" r=\""+agentBody['rightEye'].r+"\"/>";
 	return eyesSVG;
 }
 
 function drawMouth(){
 	var mouthSVG = "<path id=\"mouth\" class=\"agent-mouth\" ";
-	mouthSVG += "d=\"M "+keypoints['rightLipCorner'].x+" "+keypoints['rightLipCorner'].y
-				   +" Q "+keypoints['upperLipControl'].x+" "+keypoints['upperLipControl'].y+" "+keypoints['leftLipCorner'].x+" "+keypoints['leftLipCorner'].y
-				   +" Q "+keypoints['lowerLipControl'].x+" "+keypoints['lowerLipControl'].y+" "+keypoints['rightLipCorner'].x+" "+keypoints['rightLipCorner'].y
+	mouthSVG += "d=\"M "+agentBody['rightLipCorner'].x+" "+agentBody['rightLipCorner'].y
+				   +" Q "+agentBody['upperLipControl'].x+" "+agentBody['upperLipControl'].y+" "+agentBody['leftLipCorner'].x+" "+agentBody['leftLipCorner'].y
+				   +" Q "+agentBody['lowerLipControl'].x+" "+agentBody['lowerLipControl'].y+" "+agentBody['rightLipCorner'].x+" "+agentBody['rightLipCorner'].y
 	mouthSVG += "\"/>";
 	return mouthSVG;
 }
 
 function drawArms(){
+	var leftUpperArmRad = agentBody['leftUpperArm'].angle/180*Math.PI;
+	var leftElbow = {
+						x: agentBody['leftShoulder'].x + Math.cos(leftUpperArmRad)*agentBody['leftUpperArm'].length,
+						y: agentBody['leftShoulder'].y + Math.sin(leftUpperArmRad)*agentBody['leftUpperArm'].length
+					};
+	var leftLowerArmRad = agentBody['leftLowerArm'].angle/180*Math.PI;
+	var leftWrist = {
+						x: leftElbow.x + Math.cos(leftLowerArmRad)*agentBody['leftLowerArm'].length,
+						y: leftElbow.y + Math.sin(leftLowerArmRad)*agentBody['leftLowerArm'].length
+					};
+					
+	
+	var rightUpperArmRad = agentBody['rightUpperArm'].angle/180*Math.PI;
+	var rightElbow = {
+						x: agentBody['rightShoulder'].x + Math.cos(rightUpperArmRad)*agentBody['rightUpperArm'].length,
+						y: agentBody['rightShoulder'].y + Math.sin(rightUpperArmRad)*agentBody['rightUpperArm'].length
+					};
+	var rightLowerArmRad = agentBody['rightLowerArm'].angle/180*Math.PI;
+	var rightWrist = {
+						x: rightElbow.x + Math.cos(rightLowerArmRad)*agentBody['rightLowerArm'].length,
+						y: rightElbow.y + Math.sin(rightLowerArmRad)*agentBody['rightLowerArm'].length
+					};
+	
+	
 	var armSVG = "<path class=\"agent-arm\" d=\""
-				  +"M "+keypoints['leftShoulder'].x+" "+keypoints['leftShoulder'].y
-				  +" L "+keypoints['leftElbow'].x+" "+keypoints['leftElbow'].y
-				  +" L "+keypoints['leftWrist'].x+" "+keypoints['leftWrist'].y
+				  +"M "+agentBody['leftShoulder'].x+" "+agentBody['leftShoulder'].y
+				  +" L "+leftElbow.x+" "+leftElbow.y
+				  +" L "+leftWrist.x+" "+leftWrist.y
 				  +"\"/>";
 	armSVG += "<path class=\"agent-arm\" d=\""
-				  +"M "+keypoints['rightShoulder'].x+" "+keypoints['rightShoulder'].y
-				  +" L "+keypoints['rightElbow'].x+" "+keypoints['rightElbow'].y
-				  +" L "+keypoints['rightWrist'].x+" "+keypoints['rightWrist'].y
+				  +"M "+agentBody['rightShoulder'].x+" "+agentBody['rightShoulder'].y
+				  +" L "+rightElbow.x+" "+rightElbow.y
+				  +" L "+rightWrist.x+" "+rightWrist.y
 				  +"\"/>";
 	return armSVG;
 }
@@ -302,25 +338,25 @@ function drawArms(){
 
 function drawLegs(){
 	var legSVG = "<path class=\"agent-foot\" d=\""
-				  +"M "+keypoints['leftAnkle'].x+" "+keypoints['leftAnkle'].y
-				  +" L "+keypoints['leftToes'].x+" "+keypoints['leftToes'].y
+				  +"M "+agentBody['leftAnkle'].x+" "+agentBody['leftAnkle'].y
+				  +" L "+agentBody['leftToes'].x+" "+agentBody['leftToes'].y
 				  +"\"/>";			  
 	legSVG += "<path class=\"agent-foot\" d=\""
-				  +"M "+keypoints['rightAnkle'].x+" "+keypoints['rightAnkle'].y
-				  +" L "+keypoints['rightToes'].x+" "+keypoints['rightToes'].y
+				  +"M "+agentBody['rightAnkle'].x+" "+agentBody['rightAnkle'].y
+				  +" L "+agentBody['rightToes'].x+" "+agentBody['rightToes'].y
 				  +"\"/>";			  
 
 	legSVG += "<path class=\"agent-leg\" d=\""
-				  +"M "+keypoints['leftHip'].x+" "+keypoints['leftHip'].y
-				  +" L "+keypoints['leftKnee'].x+" "+keypoints['leftKnee'].y
-				  +" L "+keypoints['leftAnkle'].x+" "+keypoints['leftAnkle'].y
+				  +"M "+agentBody['leftHip'].x+" "+agentBody['leftHip'].y
+				  +" L "+agentBody['leftKnee'].x+" "+agentBody['leftKnee'].y
+				  +" L "+agentBody['leftAnkle'].x+" "+agentBody['leftAnkle'].y
 				  +"\"/>";
 	legSVG += "<path class=\"agent-leg\" d=\""
-				  +"M "+keypoints['rightHip'].x+" "+keypoints['rightHip'].y
-				  +" L "+keypoints['rightKnee'].x+" "+keypoints['rightKnee'].y
-				  +" L "+keypoints['rightAnkle'].x+" "+keypoints['rightAnkle'].y
+				  +"M "+agentBody['rightHip'].x+" "+agentBody['rightHip'].y
+				  +" L "+agentBody['rightKnee'].x+" "+agentBody['rightKnee'].y
+				  +" L "+agentBody['rightAnkle'].x+" "+agentBody['rightAnkle'].y
 				  +"\"/>";
-	legSVG += "<ellipse class=\"agent-hips\" cx=\""+keypoints['hips'].x+"\" cy=\""+keypoints['hips'].y+"\" rx=\""+keypoints['hips'].rx+"\" ry=\""+keypoints['hips'].ry+"\"/>";
+	legSVG += "<ellipse class=\"agent-hips\" cx=\""+agentBody['hips'].x+"\" cy=\""+agentBody['hips'].y+"\" rx=\""+agentBody['hips'].rx+"\" ry=\""+agentBody['hips'].ry+"\"/>";
 	
 	return legSVG;
 }
@@ -328,15 +364,15 @@ function drawLegs(){
 
 function drawTorso(){
 	var torsoSVG = "<path class=\"agent-sleeve\" d=\""
-				  +"M "+keypoints['neckBottom'].x+" "+keypoints['neckBottom'].y
-				  +" L "+keypoints['leftShoulder'].x+" "+keypoints['leftShoulder'].y
+				  +"M "+agentBody['neckBottom'].x+" "+agentBody['neckBottom'].y
+				  +" L "+agentBody['leftShoulder'].x+" "+agentBody['leftShoulder'].y
 				  +"\"/>";
 		torsoSVG += "<path class=\"agent-sleeve\" d=\""
-				  +"M "+keypoints['neckBottom'].x+" "+keypoints['neckBottom'].y
-				  +" L "+keypoints['rightShoulder'].x+" "+keypoints['rightShoulder'].y
+				  +"M "+agentBody['neckBottom'].x+" "+agentBody['neckBottom'].y
+				  +" L "+agentBody['rightShoulder'].x+" "+agentBody['rightShoulder'].y
 				  +"\"/>";
-		torsoSVG += "<ellipse class=\"agent-torso\" cx=\""+keypoints['waist'].x+"\" cy=\""+keypoints['waist'].y+"\" rx=\""+keypoints['waist'].rx+"\" ry=\""+keypoints['waist'].ry+"\"/>";
-		torsoSVG += "<ellipse class=\"agent-torso\" cx=\""+keypoints['chest'].x+"\" cy=\""+keypoints['chest'].y+"\" rx=\""+keypoints['chest'].rx+"\" ry=\""+keypoints['chest'].ry+"\"/>";
+		torsoSVG += "<ellipse class=\"agent-torso\" cx=\""+agentBody['waist'].x+"\" cy=\""+agentBody['waist'].y+"\" rx=\""+agentBody['waist'].rx+"\" ry=\""+agentBody['waist'].ry+"\"/>";
+		torsoSVG += "<ellipse class=\"agent-torso\" cx=\""+agentBody['chest'].x+"\" cy=\""+agentBody['chest'].y+"\" rx=\""+agentBody['chest'].rx+"\" ry=\""+agentBody['chest'].ry+"\"/>";
 		
 	return torsoSVG;
 }
@@ -402,6 +438,15 @@ function animate(channel, name){
 			activeAnims['eyes'].task = setInterval(anim_eyes_shrink, frameLength);
 		else if(name== 'neutral')
 			resetAnim_eyes();
+	}else if(channel =='arms'){
+		if(name == 'wave')
+			activeAnims['arms'].task = setInterval(anim_arms_wave, frameLength);
+		else if(name == 'onHips')
+			activeAnims['arms'].task = setInterval(anim_arms_onHips, frameLength);
+		else if(name == 'cross')
+			activeAnims['arms'].task = setInterval(anim_arms_cross, frameLength);
+		else if (name=='neutral')
+			resetAnim_arms();
 	}
 	
 }
@@ -416,9 +461,9 @@ function anim_mouth_speak(){
 	var step = 2;
 	
 	if(activeAnims['mouth'].counter <= duration/2){
-		keypoints['lowerLipControl'].y = keypoints['lowerLipControl'].y_neutral + activeAnims['mouth'].counter*step;
+		agentBody['lowerLipControl'].y = agentBody['lowerLipControl'].y_neutral + activeAnims['mouth'].counter*step;
 	}else if(activeAnims['mouth'].counter <= duration){
-		keypoints['lowerLipControl'].y = keypoints['lowerLipControl'].y_neutral + (duration - activeAnims['mouth'].counter)*step;
+		agentBody['lowerLipControl'].y = agentBody['lowerLipControl'].y_neutral + (duration - activeAnims['mouth'].counter)*step;
 		if(activeAnims['mouth'].counter == duration)
 			activeAnims['mouth'].counter = -1;
 	}
@@ -430,7 +475,7 @@ function anim_upperLip_raise(){
 	var step = 3;
 	
 	if(activeAnims['upperLip'].counter <= duration){
-		keypoints['upperLipControl'].y = keypoints['upperLipControl'].y_neutral - activeAnims['upperLip'].counter*step;
+		agentBody['upperLipControl'].y = agentBody['upperLipControl'].y_neutral - activeAnims['upperLip'].counter*step;
 	}else{
 		//clear animation
 		clearInterval(activeAnims['upperLip'].task);
@@ -444,8 +489,8 @@ function anim_eyes_grow(){
 	var step = 1;
 	
 	if(activeAnims['eyes'].counter <= duration){
-		keypoints['leftEye'].r = keypoints['leftEye'].r_neutral + activeAnims['eyes'].counter*step;
-		keypoints['rightEye'].r = keypoints['rightEye'].r_neutral + activeAnims['eyes'].counter*step;
+		agentBody['leftEye'].r = agentBody['leftEye'].r_neutral + activeAnims['eyes'].counter*step;
+		agentBody['rightEye'].r = agentBody['rightEye'].r_neutral + activeAnims['eyes'].counter*step;
 	}else{
 		//clear animation
 		clearInterval(activeAnims['eyes'].task);
@@ -459,8 +504,8 @@ function anim_eyes_shrink(){
 	var step = 1;
 	
 	if(activeAnims['eyes'].counter <= duration){
-		keypoints['leftEye'].r = keypoints['leftEye'].r_neutral - activeAnims['eyes'].counter*step;
-		keypoints['rightEye'].r = keypoints['rightEye'].r_neutral - activeAnims['eyes'].counter*step;
+		agentBody['leftEye'].r = agentBody['leftEye'].r_neutral - activeAnims['eyes'].counter*step;
+		agentBody['rightEye'].r = agentBody['rightEye'].r_neutral - activeAnims['eyes'].counter*step;
 	}else{
 		//clear animation
 		clearInterval(activeAnims['eyes'].task);
@@ -475,10 +520,10 @@ function anim_lips_smile(){
 	var step_y = 1;
 	
 	if(activeAnims['lipCorners'].counter <= duration){
-		keypoints['leftLipCorner'].x = keypoints['leftLipCorner'].x_neutral + activeAnims['lipCorners'].counter*step_x;
-		keypoints['leftLipCorner'].y = keypoints['leftLipCorner'].y_neutral - activeAnims['lipCorners'].counter*step_y;
-		keypoints['rightLipCorner'].x = keypoints['rightLipCorner'].x_neutral - activeAnims['lipCorners'].counter*step_x;
-		keypoints['rightLipCorner'].y = keypoints['rightLipCorner'].y_neutral - activeAnims['lipCorners'].counter*step_y;
+		agentBody['leftLipCorner'].x = agentBody['leftLipCorner'].x_neutral + activeAnims['lipCorners'].counter*step_x;
+		agentBody['leftLipCorner'].y = agentBody['leftLipCorner'].y_neutral - activeAnims['lipCorners'].counter*step_y;
+		agentBody['rightLipCorner'].x = agentBody['rightLipCorner'].x_neutral - activeAnims['lipCorners'].counter*step_x;
+		agentBody['rightLipCorner'].y = agentBody['rightLipCorner'].y_neutral - activeAnims['lipCorners'].counter*step_y;
 		
 	}else{
 		//clear animation
@@ -494,10 +539,10 @@ function anim_lips_frown(){
 	var step_y = 1;
 	
 	if(activeAnims['lipCorners'].counter <= duration){
-		keypoints['leftLipCorner'].x = keypoints['leftLipCorner'].x_neutral - activeAnims['lipCorners'].counter*step_x;
-		keypoints['leftLipCorner'].y = keypoints['leftLipCorner'].y_neutral + activeAnims['lipCorners'].counter*step_y;
-		keypoints['rightLipCorner'].x = keypoints['rightLipCorner'].x_neutral + activeAnims['lipCorners'].counter*step_x;
-		keypoints['rightLipCorner'].y = keypoints['rightLipCorner'].y_neutral + activeAnims['lipCorners'].counter*step_y;
+		agentBody['leftLipCorner'].x = agentBody['leftLipCorner'].x_neutral - activeAnims['lipCorners'].counter*step_x;
+		agentBody['leftLipCorner'].y = agentBody['leftLipCorner'].y_neutral + activeAnims['lipCorners'].counter*step_y;
+		agentBody['rightLipCorner'].x = agentBody['rightLipCorner'].x_neutral + activeAnims['lipCorners'].counter*step_x;
+		agentBody['rightLipCorner'].y = agentBody['rightLipCorner'].y_neutral + activeAnims['lipCorners'].counter*step_y;
 		
 	}else{
 		//clear animation
@@ -513,10 +558,10 @@ function anim_lips_fear(){
 	var step_y = 1;
 	
 	if(activeAnims['lipCorners'].counter <= duration){
-		keypoints['leftLipCorner'].x = keypoints['leftLipCorner'].x_neutral + activeAnims['lipCorners'].counter*step_x;
-		keypoints['leftLipCorner'].y = keypoints['leftLipCorner'].y_neutral + activeAnims['lipCorners'].counter*step_y;
-		keypoints['rightLipCorner'].x = keypoints['rightLipCorner'].x_neutral - activeAnims['lipCorners'].counter*step_x;
-		keypoints['rightLipCorner'].y = keypoints['rightLipCorner'].y_neutral + activeAnims['lipCorners'].counter*step_y;
+		agentBody['leftLipCorner'].x = agentBody['leftLipCorner'].x_neutral + activeAnims['lipCorners'].counter*step_x;
+		agentBody['leftLipCorner'].y = agentBody['leftLipCorner'].y_neutral + activeAnims['lipCorners'].counter*step_y;
+		agentBody['rightLipCorner'].x = agentBody['rightLipCorner'].x_neutral - activeAnims['lipCorners'].counter*step_x;
+		agentBody['rightLipCorner'].y = agentBody['rightLipCorner'].y_neutral + activeAnims['lipCorners'].counter*step_y;
 		
 	}else{
 		//clear animation
@@ -531,13 +576,13 @@ function anim_brows_surprise(){
 	var step = 2;
 	
 	if(activeAnims['eyebrows'].counter <= duration){
-		keypoints['leftEyebrowOuter'].y = keypoints['leftEyebrowOuter'].y_neutral - activeAnims['eyebrows'].counter*step;	
-		keypoints['leftEyebrowCenter'].y = keypoints['leftEyebrowCenter'].y_neutral - activeAnims['eyebrows'].counter*step;
-		keypoints['leftEyebrowInner'].y = keypoints['leftEyebrowInner'].y_neutral - activeAnims['eyebrows'].counter*step;
+		agentBody['leftEyebrowOuter'].y = agentBody['leftEyebrowOuter'].y_neutral - activeAnims['eyebrows'].counter*step;	
+		agentBody['leftEyebrowCenter'].y = agentBody['leftEyebrowCenter'].y_neutral - activeAnims['eyebrows'].counter*step;
+		agentBody['leftEyebrowInner'].y = agentBody['leftEyebrowInner'].y_neutral - activeAnims['eyebrows'].counter*step;
 		
-		keypoints['rightEyebrowOuter'].y = keypoints['rightEyebrowOuter'].y_neutral - activeAnims['eyebrows'].counter*step;	
-		keypoints['rightEyebrowCenter'].y = keypoints['rightEyebrowCenter'].y_neutral - activeAnims['eyebrows'].counter*step;
-		keypoints['rightEyebrowInner'].y = keypoints['rightEyebrowInner'].y_neutral - activeAnims['eyebrows'].counter*step;		
+		agentBody['rightEyebrowOuter'].y = agentBody['rightEyebrowOuter'].y_neutral - activeAnims['eyebrows'].counter*step;	
+		agentBody['rightEyebrowCenter'].y = agentBody['rightEyebrowCenter'].y_neutral - activeAnims['eyebrows'].counter*step;
+		agentBody['rightEyebrowInner'].y = agentBody['rightEyebrowInner'].y_neutral - activeAnims['eyebrows'].counter*step;		
 	}else{
 		//clear animation
 		clearInterval(activeAnims['eyebrows'].task);
@@ -552,11 +597,11 @@ function anim_brows_sadness(){
 	var step_inner = 2;
 	
 	if(activeAnims['eyebrows'].counter <= duration){
-		keypoints['leftEyebrowCenter'].y = keypoints['leftEyebrowCenter'].y_neutral - activeAnims['eyebrows'].counter*step_center;
-		keypoints['leftEyebrowInner'].y = keypoints['leftEyebrowInner'].y_neutral - activeAnims['eyebrows'].counter*step_inner;
+		agentBody['leftEyebrowCenter'].y = agentBody['leftEyebrowCenter'].y_neutral - activeAnims['eyebrows'].counter*step_center;
+		agentBody['leftEyebrowInner'].y = agentBody['leftEyebrowInner'].y_neutral - activeAnims['eyebrows'].counter*step_inner;
 		
-		keypoints['rightEyebrowCenter'].y = keypoints['rightEyebrowCenter'].y_neutral - activeAnims['eyebrows'].counter*step_center;
-		keypoints['rightEyebrowInner'].y = keypoints['rightEyebrowInner'].y_neutral - activeAnims['eyebrows'].counter*step_inner;	
+		agentBody['rightEyebrowCenter'].y = agentBody['rightEyebrowCenter'].y_neutral - activeAnims['eyebrows'].counter*step_center;
+		agentBody['rightEyebrowInner'].y = agentBody['rightEyebrowInner'].y_neutral - activeAnims['eyebrows'].counter*step_inner;	
 	}else{
 		//clear animation
 		clearInterval(activeAnims['eyebrows'].task);
@@ -572,13 +617,13 @@ function anim_brows_fear(){
 	var step_x = 1;
 	
 	if(activeAnims['eyebrows'].counter <= duration){
-		keypoints['leftEyebrowCenter'].y = keypoints['leftEyebrowCenter'].y_neutral - activeAnims['eyebrows'].counter*step_center;
-		keypoints['leftEyebrowInner'].x = keypoints['leftEyebrowInner'].x_neutral - activeAnims['eyebrows'].counter*step_x;
-		keypoints['leftEyebrowInner'].y = keypoints['leftEyebrowInner'].y_neutral - activeAnims['eyebrows'].counter*step_inner;
+		agentBody['leftEyebrowCenter'].y = agentBody['leftEyebrowCenter'].y_neutral - activeAnims['eyebrows'].counter*step_center;
+		agentBody['leftEyebrowInner'].x = agentBody['leftEyebrowInner'].x_neutral - activeAnims['eyebrows'].counter*step_x;
+		agentBody['leftEyebrowInner'].y = agentBody['leftEyebrowInner'].y_neutral - activeAnims['eyebrows'].counter*step_inner;
 		
-		keypoints['rightEyebrowCenter'].y = keypoints['rightEyebrowCenter'].y_neutral - activeAnims['eyebrows'].counter*step_center;
-		keypoints['rightEyebrowInner'].x = keypoints['rightEyebrowInner'].x_neutral + activeAnims['eyebrows'].counter*step_x;
-		keypoints['rightEyebrowInner'].y = keypoints['rightEyebrowInner'].y_neutral - activeAnims['eyebrows'].counter*step_inner;	
+		agentBody['rightEyebrowCenter'].y = agentBody['rightEyebrowCenter'].y_neutral - activeAnims['eyebrows'].counter*step_center;
+		agentBody['rightEyebrowInner'].x = agentBody['rightEyebrowInner'].x_neutral + activeAnims['eyebrows'].counter*step_x;
+		agentBody['rightEyebrowInner'].y = agentBody['rightEyebrowInner'].y_neutral - activeAnims['eyebrows'].counter*step_inner;	
 	}else{
 		//clear animation
 		clearInterval(activeAnims['eyebrows'].task);
@@ -594,13 +639,13 @@ function anim_brows_anger(){
 	var step_x = 1;
 	
 	if(activeAnims['eyebrows'].counter <= duration){
-		keypoints['leftEyebrowCenter'].y = keypoints['leftEyebrowCenter'].y_neutral + activeAnims['eyebrows'].counter*step_center;
-		keypoints['leftEyebrowInner'].x = keypoints['leftEyebrowInner'].x_neutral - activeAnims['eyebrows'].counter*step_x;
-		keypoints['leftEyebrowInner'].y = keypoints['leftEyebrowInner'].y_neutral + activeAnims['eyebrows'].counter*step_inner;
+		agentBody['leftEyebrowCenter'].y = agentBody['leftEyebrowCenter'].y_neutral + activeAnims['eyebrows'].counter*step_center;
+		agentBody['leftEyebrowInner'].x = agentBody['leftEyebrowInner'].x_neutral - activeAnims['eyebrows'].counter*step_x;
+		agentBody['leftEyebrowInner'].y = agentBody['leftEyebrowInner'].y_neutral + activeAnims['eyebrows'].counter*step_inner;
 		
-		keypoints['rightEyebrowCenter'].y = keypoints['rightEyebrowCenter'].y_neutral + activeAnims['eyebrows'].counter*step_center;
-		keypoints['rightEyebrowInner'].x = keypoints['rightEyebrowInner'].x_neutral + activeAnims['eyebrows'].counter*step_x;
-		keypoints['rightEyebrowInner'].y = keypoints['rightEyebrowInner'].y_neutral + activeAnims['eyebrows'].counter*step_inner;	
+		agentBody['rightEyebrowCenter'].y = agentBody['rightEyebrowCenter'].y_neutral + activeAnims['eyebrows'].counter*step_center;
+		agentBody['rightEyebrowInner'].x = agentBody['rightEyebrowInner'].x_neutral + activeAnims['eyebrows'].counter*step_x;
+		agentBody['rightEyebrowInner'].y = agentBody['rightEyebrowInner'].y_neutral + activeAnims['eyebrows'].counter*step_inner;	
 	}else{
 		//clear animation
 		clearInterval(activeAnims['eyebrows'].task);
@@ -609,39 +654,80 @@ function anim_brows_anger(){
 	activeAnims['eyebrows'].counter++;
 }
 
+
+function anim_arms_wave(){
+	var step_upper = 12;
+	var step_lower = 10;
+	
+	if(activeAnims['arms'].counter <= 12){
+		agentBody['rightUpperArm'].angle = agentBody['rightUpperArm'].angle_neutral + activeAnims['arms'].counter*step_upper;
+		agentBody['rightLowerArm'].angle = agentBody['rightLowerArm'].angle_neutral + activeAnims['arms'].counter*step_upper;		
+	}
+	else if(activeAnims['arms'].counter <= 22){
+		agentBody['rightLowerArm'].angle += step_lower;		
+	}
+	else if(activeAnims['arms'].counter <= 32){
+		agentBody['rightLowerArm'].angle -= step_lower;		
+	}
+	else if(activeAnims['arms'].counter <= 42){
+		agentBody['rightLowerArm'].angle += step_lower;		
+	}
+	else if(activeAnims['arms'].counter <= 52){
+		agentBody['rightLowerArm'].angle -= step_lower;		
+	}
+	else if(activeAnims['arms'].counter <= 64){
+		agentBody['rightUpperArm'].angle = agentBody['rightUpperArm'].angle_neutral +(64-activeAnims['arms'].counter)*step_upper;
+		agentBody['rightLowerArm'].angle = agentBody['rightLowerArm'].angle_neutral +(64-activeAnims['arms'].counter)*step_upper;
+	}
+	
+	else{
+		//clear animation
+		clearInterval(activeAnims['arms'].task);
+		activeAnims['arms'].task = undefined;
+	}
+	activeAnims['arms'].counter++;
+}
+
 /*--------------------------------------------------------
    neutral animations
 ---------------------------------------------------------*/
 
 function resetAnim_mouth(){
-	keypoints['lowerLipControl'].y = keypoints['lowerLipControl'].y_neutral;
+	agentBody['lowerLipControl'].y = agentBody['lowerLipControl'].y_neutral;
 }
 
 function resetAnim_upperLip(){
-	keypoints['upperLipControl'].y = keypoints['upperLipControl'].y_neutral;
+	agentBody['upperLipControl'].y = agentBody['upperLipControl'].y_neutral;
 }
 
 function resetAnim_lipCorners(){
-	keypoints['leftLipCorner'].x = keypoints['leftLipCorner'].x_neutral;
-	keypoints['leftLipCorner'].y = keypoints['leftLipCorner'].y_neutral;
-	keypoints['rightLipCorner'].x = keypoints['rightLipCorner'].x_neutral;
-	keypoints['rightLipCorner'].y = keypoints['rightLipCorner'].y_neutral;
+	agentBody['leftLipCorner'].x = agentBody['leftLipCorner'].x_neutral;
+	agentBody['leftLipCorner'].y = agentBody['leftLipCorner'].y_neutral;
+	agentBody['rightLipCorner'].x = agentBody['rightLipCorner'].x_neutral;
+	agentBody['rightLipCorner'].y = agentBody['rightLipCorner'].y_neutral;
 }
 
 function resetAnim_eyebrows(){
-	keypoints['leftEyebrowOuter'].y = keypoints['leftEyebrowOuter'].y_neutral;
-	keypoints['leftEyebrowCenter'].y = keypoints['leftEyebrowCenter'].y_neutral;
-	keypoints['leftEyebrowInner'].x = keypoints['leftEyebrowInner'].x_neutral;
-	keypoints['leftEyebrowInner'].y = keypoints['leftEyebrowInner'].y_neutral;
-	keypoints['rightEyebrowOuter'].y = keypoints['rightEyebrowOuter'].y_neutral;
-	keypoints['rightEyebrowCenter'].y = keypoints['rightEyebrowCenter'].y_neutral;
-	keypoints['rightEyebrowInner'].x = keypoints['rightEyebrowInner'].x_neutral;
-	keypoints['rightEyebrowInner'].y = keypoints['rightEyebrowInner'].y_neutral;
+	agentBody['leftEyebrowOuter'].y = agentBody['leftEyebrowOuter'].y_neutral;
+	agentBody['leftEyebrowCenter'].y = agentBody['leftEyebrowCenter'].y_neutral;
+	agentBody['leftEyebrowInner'].x = agentBody['leftEyebrowInner'].x_neutral;
+	agentBody['leftEyebrowInner'].y = agentBody['leftEyebrowInner'].y_neutral;
+	agentBody['rightEyebrowOuter'].y = agentBody['rightEyebrowOuter'].y_neutral;
+	agentBody['rightEyebrowCenter'].y = agentBody['rightEyebrowCenter'].y_neutral;
+	agentBody['rightEyebrowInner'].x = agentBody['rightEyebrowInner'].x_neutral;
+	agentBody['rightEyebrowInner'].y = agentBody['rightEyebrowInner'].y_neutral;
 }
 
 function resetAnim_eyes(){
-	keypoints['leftEye'].r = keypoints['leftEye'].r_neutral;
-	keypoints['rightEye'].r = keypoints['rightEye'].r_neutral;
+	agentBody['leftEye'].r = agentBody['leftEye'].r_neutral;
+	agentBody['rightEye'].r = agentBody['rightEye'].r_neutral;
+}
+
+function resetAnim_arms(){
+	agentBody['leftUpperArm'].angle = agentBody['leftUpperArm'].angle_neutral;
+	agentBody['leftLowerArm'].angle = agentBody['leftLowerArm'].angle_neutral;
+	agentBody['rightUpperArm'].angle = agentBody['rightUpperArm'].angle_neutral;
+	agentBody['rightLowerArm'].angle = agentBody['rightLowerArm'].angle_neutral;
 }
 
 //-------------------------------------------------------------------------------------
