@@ -16,10 +16,13 @@
 */
 
 :root{
-	--fill-color-skin: #b0afff;
-	--stroke-color-brow: #504f88;
-	--fill-color-eyes: #000000;
-	--fill-color-mouth: #aa3344;	
+	--color-skin: tan;
+	--color-hair: brown;
+	--color-eyes: #000000;
+	--color-mouth: #aa3344;	
+	--color-top: seaGreen;	
+	--color-pants: darkSlateGray;	
+	--color-shoes: indigo;
 }
 
 
@@ -44,28 +47,81 @@
 -------------------------------------------------*/
 
 .agent-head{
-	fill: var(--fill-color-skin);
-	fill-opacity: 1.0;
+	fill: var(--color-skin);
+	stroke: transparent;
+}
+
+.agent-hair{
+	fill: var(--color-hair);
 	stroke: transparent;
 }
 
 .agent-brow{
 	fill: transparent;
-	stroke: var(--stroke-color-brow);
+	stroke: var(--color-hair);
 	stroke-width: 3;
 }
 
 .agent-eye{
-	fill: var(--fill-color-eye);
-	fill-opacity: 1.0;
+	fill: var(--color-eye);
 	stroke: transparent;
 }
 
 .agent-mouth{
-	fill: var(--fill-color-mouth);
-	fill-opacity: 1.0;
+	fill: var(--color-mouth);
 	stroke: transparent;
 	d: M 130 160 Q 150 170 170 160 Q 150 165 130 160;
 }
 
+.agent-neck{
+	fill: transparent;
+	stroke-width: 10;
+	stroke: var(--color-skin);
+	stroke-linecap: round;
+}
 
+.agent-arm{
+	fill: transparent;
+	stroke-width: 15;
+	stroke: var(--color-skin);
+	stroke-linecap: round;
+}
+
+.agent-finger{
+	fill: transparent;
+	stroke-width: 5;
+	stroke: var(--color-skin);
+	stroke-linecap: round;
+}
+
+
+.agent-leg{
+	fill: transparent;
+	stroke-width: 20;
+	stroke: var(--color-pants);
+	stroke-linecap: round;
+}
+
+.agent-foot{
+	fill: transparent;
+	stroke-width: 25;
+	stroke: var(--color-shoes);
+	stroke-linecap: round;
+}
+
+.agent-torso{
+	fill: var(--color-top);
+	stroke:transparent;
+}
+
+.agent-hips{
+	fill: var(--color-pants);
+	stroke:transparent;
+}
+
+.agent-sleeve{
+	fill: transparent;
+	stroke-width: 25;
+	stroke: var(--color-top);
+	stroke-linecap: round;
+}

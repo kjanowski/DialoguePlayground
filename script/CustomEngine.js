@@ -31,19 +31,45 @@ voice.rate = 1.0;	//from 0.1 to 10
 voice.pitch = 1.0;	//from 0 to 2
 
 var keypoints = new Array();
-keypoints['head'] = {x: 150, y: 150, r:50};
-keypoints['leftEye'] = {x: 170, y: 140, r:8, r_neutral:8};
-keypoints['rightEye'] = {x: 130, y: 140, r:8, r_neutral:8};
-keypoints['leftEyebrowOuter'] = {x: 180, y: 125, y_neutral: 125};
-keypoints['leftEyebrowCenter'] = {x: 170, y: 120, y_neutral: 120};
-keypoints['leftEyebrowInner'] = {x: 160, y: 125, x_neutral: 160, y_neutral: 125};
-keypoints['rightEyebrowOuter'] = {x: 120, y: 125, y_neutral: 125};
-keypoints['rightEyebrowCenter'] = {x: 130, y: 120, y_neutral: 120};
-keypoints['rightEyebrowInner'] = {x: 140, y: 125, x_neutral: 140, y_neutral: 125};
-keypoints['leftLipCorner'] = {x: 170, y: 170, x_neutral: 170, y_neutral: 170};
-keypoints['rightLipCorner'] = {x: 130, y: 170, x_neutral: 130, y_neutral: 170};
-keypoints['upperLipControl'] = {x: 150, y: 170, y_neutral: 170};
-keypoints['lowerLipControl'] = {x: 150, y: 175, y_neutral: 175};
+keypoints['head'] = {x: 200, y: 150, rx:45, ry:50};
+keypoints['hair'] = {x: 200, y: 140, rx:50, ry:60};
+
+keypoints['leftEye'] = {x: 220, y: 140, r:8, r_neutral:8};
+keypoints['rightEye'] = {x: 180, y: 140, r:8, r_neutral:8};
+keypoints['leftEyebrowOuter'] = {x: 230, y: 125, y_neutral: 125};
+keypoints['leftEyebrowCenter'] = {x: 220, y: 120, y_neutral: 120};
+keypoints['leftEyebrowInner'] = {x: 210, y: 125, x_neutral: 210, y_neutral: 125};
+keypoints['rightEyebrowOuter'] = {x: 170, y: 125, y_neutral: 125};
+keypoints['rightEyebrowCenter'] = {x: 180, y: 120, y_neutral: 120};
+keypoints['rightEyebrowInner'] = {x: 190, y: 125, x_neutral: 190, y_neutral: 125};
+keypoints['leftLipCorner'] = {x: 220, y: 170, x_neutral: 220, y_neutral: 170};
+keypoints['rightLipCorner'] = {x: 180, y: 170, x_neutral: 180, y_neutral: 170};
+keypoints['upperLipControl'] = {x: 200, y: 170, y_neutral: 170};
+keypoints['lowerLipControl'] = {x: 200, y: 175, y_neutral: 175};
+
+keypoints['neckTop'] = {x: 200, y: 180};
+keypoints['neckBottom'] = {x: 200, y: 250};
+
+keypoints['chest'] = {x: 200, y: 280, rx:45, ry:50};
+keypoints['waist'] = {x: 200, y: 320, rx:40, ry:45};
+keypoints['hips'] = {x: 200, y: 370, rx:40, ry:45};
+
+keypoints['leftShoulder'] = {x: 250, y: 250};
+keypoints['leftElbow'] = {x: 260, y: 350, x_neutral: 260, y_neutral: 350};
+keypoints['leftWrist'] = {x: 250, y: 450, x_neutral: 250, y_neutral: 450};
+keypoints['rightShoulder'] = {x: 150, y: 250};
+keypoints['rightElbow'] = {x: 140, y: 350, x_neutral: 140, y_neutral: 350};
+keypoints['rightWrist'] = {x: 150, y: 450, x_neutral: 150, y_neutral: 450};
+
+keypoints['leftHip'] = {x: 220, y: 360};
+keypoints['leftKnee'] = {x: 230, y: 480, x_neutral: 230, y_neutral: 480};
+keypoints['leftAnkle'] = {x: 220, y: 600, x_neutral: 220, y_neutral: 600};
+keypoints['leftToes'] = {x: 230, y: 650, x_neutral: 230, y_neutral: 650};
+keypoints['rightHip'] = {x: 180, y: 360};
+keypoints['rightKnee'] = {x: 170, y: 480, x_neutral: 170, y_neutral: 480};
+keypoints['rightAnkle'] = {x: 180, y: 600, x_neutral: 180, y_neutral: 600};
+keypoints['rightToes'] = {x: 170, y: 650, x_neutral: 170, y_neutral: 650};
+
 
 var mainTask = undefined;
 var frameLength = 40;
@@ -191,8 +217,10 @@ function createBody(){
 }
 
 function drawBody(){
-	var svgContent = "<svg width=\"300\" height=\"600\">";
+	var svgContent = "<svg width=\"300\" height=\"700\">";
 	
+	//neck
+	svgContent += drawNeck();	
 	//head
 	svgContent += drawHead();
 	//brows
@@ -202,14 +230,31 @@ function drawBody(){
 	//mouth
 	svgContent += drawMouth();
 	
+	//arms
+	svgContent += drawArms();
+	//legs
+	svgContent += drawLegs();	
+	//torso
+	svgContent += drawTorso();
+
+	
 	//close SVG element
 	svgContent += "</svg>";
 		
 	bodyContainer.innerHTML = svgContent;	
 }
 
+function drawNeck(){
+	var neckSVG = "<path class=\"agent-neck\" d=\""
+				  +"M "+keypoints['neckTop'].x+" "+keypoints['neckTop'].y
+				  +" L "+keypoints['neckBottom'].x+" "+keypoints['neckBottom'].y
+				  +"\"/>";
+	return neckSVG;
+}
+
 function drawHead(){
-	var headSVG = "<circle class=\"agent-head\" cx=\""+keypoints['head'].x+"\" cy=\""+keypoints['head'].y+"\" r=\""+keypoints['head'].r+"\"/>";
+	var headSVG = "<ellipse class=\"agent-hair\" cx=\""+keypoints['hair'].x+"\" cy=\""+keypoints['hair'].y+"\" rx=\""+keypoints['hair'].rx+"\" ry=\""+keypoints['hair'].ry+"\"/>";
+		headSVG += "<ellipse class=\"agent-head\" cx=\""+keypoints['head'].x+"\" cy=\""+keypoints['head'].y+"\" rx=\""+keypoints['head'].rx+"\" ry=\""+keypoints['head'].ry+"\"/>";
 	return headSVG;
 }
 
@@ -240,9 +285,67 @@ function drawMouth(){
 	return mouthSVG;
 }
 
+function drawArms(){
+	var armSVG = "<path class=\"agent-arm\" d=\""
+				  +"M "+keypoints['leftShoulder'].x+" "+keypoints['leftShoulder'].y
+				  +" L "+keypoints['leftElbow'].x+" "+keypoints['leftElbow'].y
+				  +" L "+keypoints['leftWrist'].x+" "+keypoints['leftWrist'].y
+				  +"\"/>";
+	armSVG += "<path class=\"agent-arm\" d=\""
+				  +"M "+keypoints['rightShoulder'].x+" "+keypoints['rightShoulder'].y
+				  +" L "+keypoints['rightElbow'].x+" "+keypoints['rightElbow'].y
+				  +" L "+keypoints['rightWrist'].x+" "+keypoints['rightWrist'].y
+				  +"\"/>";
+	return armSVG;
+}
+
+
+function drawLegs(){
+	var legSVG = "<path class=\"agent-foot\" d=\""
+				  +"M "+keypoints['leftAnkle'].x+" "+keypoints['leftAnkle'].y
+				  +" L "+keypoints['leftToes'].x+" "+keypoints['leftToes'].y
+				  +"\"/>";			  
+	legSVG += "<path class=\"agent-foot\" d=\""
+				  +"M "+keypoints['rightAnkle'].x+" "+keypoints['rightAnkle'].y
+				  +" L "+keypoints['rightToes'].x+" "+keypoints['rightToes'].y
+				  +"\"/>";			  
+
+	legSVG += "<path class=\"agent-leg\" d=\""
+				  +"M "+keypoints['leftHip'].x+" "+keypoints['leftHip'].y
+				  +" L "+keypoints['leftKnee'].x+" "+keypoints['leftKnee'].y
+				  +" L "+keypoints['leftAnkle'].x+" "+keypoints['leftAnkle'].y
+				  +"\"/>";
+	legSVG += "<path class=\"agent-leg\" d=\""
+				  +"M "+keypoints['rightHip'].x+" "+keypoints['rightHip'].y
+				  +" L "+keypoints['rightKnee'].x+" "+keypoints['rightKnee'].y
+				  +" L "+keypoints['rightAnkle'].x+" "+keypoints['rightAnkle'].y
+				  +"\"/>";
+	legSVG += "<ellipse class=\"agent-hips\" cx=\""+keypoints['hips'].x+"\" cy=\""+keypoints['hips'].y+"\" rx=\""+keypoints['hips'].rx+"\" ry=\""+keypoints['hips'].ry+"\"/>";
+	
+	return legSVG;
+}
+
+
+function drawTorso(){
+	var torsoSVG = "<path class=\"agent-sleeve\" d=\""
+				  +"M "+keypoints['neckBottom'].x+" "+keypoints['neckBottom'].y
+				  +" L "+keypoints['leftShoulder'].x+" "+keypoints['leftShoulder'].y
+				  +"\"/>";
+		torsoSVG += "<path class=\"agent-sleeve\" d=\""
+				  +"M "+keypoints['neckBottom'].x+" "+keypoints['neckBottom'].y
+				  +" L "+keypoints['rightShoulder'].x+" "+keypoints['rightShoulder'].y
+				  +"\"/>";
+		torsoSVG += "<ellipse class=\"agent-torso\" cx=\""+keypoints['waist'].x+"\" cy=\""+keypoints['waist'].y+"\" rx=\""+keypoints['waist'].rx+"\" ry=\""+keypoints['waist'].ry+"\"/>";
+		torsoSVG += "<ellipse class=\"agent-torso\" cx=\""+keypoints['chest'].x+"\" cy=\""+keypoints['chest'].y+"\" rx=\""+keypoints['chest'].rx+"\" ry=\""+keypoints['chest'].ry+"\"/>";
+		
+	return torsoSVG;
+}
 
 
 
+//==========================================================================
+// animations
+//==========================================================================
 
 
 function animate(channel, name){
@@ -303,6 +406,10 @@ function animate(channel, name){
 	
 }
 
+
+/*--------------------------------------------------------
+   facial animations
+---------------------------------------------------------*/
 
 function anim_mouth_speak(){
 	var duration = 16;
@@ -502,6 +609,9 @@ function anim_brows_anger(){
 	activeAnims['eyebrows'].counter++;
 }
 
+/*--------------------------------------------------------
+   neutral animations
+---------------------------------------------------------*/
 
 function resetAnim_mouth(){
 	keypoints['lowerLipControl'].y = keypoints['lowerLipControl'].y_neutral;
